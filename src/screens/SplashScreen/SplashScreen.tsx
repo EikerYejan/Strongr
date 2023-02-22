@@ -30,7 +30,10 @@ export const SplashScreen = () => {
   }
 
   return (
-    <SafeAreaView onLayout={onLayoutRootView}>
+    <SafeAreaView
+      style={splashScreenStyles.safeAreaView}
+      onLayout={onLayoutRootView}
+    >
       <View style={splashScreenStyles.wrapper}>
         <Text style={splashScreenStyles.heading}>SPLASH SCREEN</Text>
       </View>
