@@ -7,6 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "build:eas:android:debug": "eas build --profile development --platform android",
+    "build:eas:android:preview": "eas build --profile preview --platform android",
+    "build:eas:ios:debug": "eas build --profile development --platform ios",
+    "build:eas:ios:preview": "eas build --profile preview --platform ios",
     "lint": "eslint"
   },
   "dependencies": {

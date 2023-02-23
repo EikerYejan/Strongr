@@ -2,17 +2,26 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "BUNDLE_IDENTIFIER": "com.eikeryejan.debug.strongr"
+      }
     },
     "development-simulator": {
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
         "simulator": true
+      },
+      "env": {
+        "BUNDLE_IDENTIFIER": "com.eikeryejan.debug.strongr"
       }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "BUNDLE_IDENTIFIER": "com.eikeryejan.preview.strongr"
+      }
     },
     "production": {}
   }
