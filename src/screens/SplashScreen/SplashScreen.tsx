@@ -1,10 +1,10 @@
-import { Text, View, SafeAreaView } from "react-native";
-import { useCallback } from "react";
-import { useFonts } from "expo-font";
-import * as SplashScreenApi from "expo-splash-screen";
-import { splashScreenStyles } from "./styles";
+import {Text, View, SafeAreaView} from "react-native"
+import {useCallback} from "react"
+import {useFonts} from "expo-font"
+import * as SplashScreenApi from "expo-splash-screen"
+import {splashScreenStyles} from "./styles"
 
-SplashScreenApi.preventAutoHideAsync();
+SplashScreenApi.preventAutoHideAsync()
 
 export const SplashScreen = () => {
   const [fontsLoaded] = useFonts({
@@ -16,27 +16,24 @@ export const SplashScreen = () => {
     "Inter-Medium": require("../../../assets/fonts/Inter-Medium.ttf"),
     "Inter-Regular": require("../../../assets/fonts/Inter-Regular.ttf"),
     "Inter-SemiBold": require("../../../assets/fonts/Inter-SemiBold.ttf"),
-    "Inter-Thin": require("../../../assets/fonts/Inter-Thin.ttf"),
-  });
+    "Inter-Thin": require("../../../assets/fonts/Inter-Thin.ttf")
+  })
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
-      await SplashScreenApi.hideAsync();
+      await SplashScreenApi.hideAsync()
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded])
 
   if (!fontsLoaded) {
-    return null;
+    return null
   }
 
   return (
-    <SafeAreaView
-      style={splashScreenStyles.safeAreaView}
-      onLayout={onLayoutRootView}
-    >
+    <View onLayout={onLayoutRootView}>
       <View style={splashScreenStyles.wrapper}>
-        <Text style={splashScreenStyles.heading}>SPLASH SCREEN</Text>
+        <Text style={splashScreenStyles.heading}>strongr</Text>
       </View>
-    </SafeAreaView>
-  );
-};
+    </View>
+  )
+}
