@@ -1,12 +1,22 @@
-import {Text, View, SafeAreaView} from "react-native"
-import {useCallback} from "react"
+import {Text, View} from "react-native"
+import {useState, useCallback} from "react"
+
+// utils
 import {useFonts} from "expo-font"
 import * as SplashScreenApi from "expo-splash-screen"
+
+// styles
 import {splashScreenStyles} from "./styles"
+
+type Props = {
+  children: JSX.Element
+}
 
 SplashScreenApi.preventAutoHideAsync()
 
-export const SplashScreen = () => {
+export const SplashScreen = ({children}: Props) => {
+  const [canRender, setCanRender] = useState(false)
+
   const [fontsLoaded] = useFonts({
     "Inter-Black": require("../../../assets/fonts/Inter-Black.ttf"),
     "Inter-Bold": require("../../../assets/fonts/Inter-Bold.ttf"),
@@ -22,11 +32,16 @@ export const SplashScreen = () => {
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreenApi.hideAsync()
+      setCanRender(true)
     }
   }, [fontsLoaded])
 
   if (!fontsLoaded) {
     return null
+  }
+
+  if (canRender) {
+    return children
   }
 
   return (

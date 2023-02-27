@@ -1,6 +1,6 @@
 import "expo-dev-client"
 
-import {SafeAreaView, StatusBar, View} from "react-native"
+import {SafeAreaView, StatusBar} from "react-native"
 
 // components
 import {TabNavigationButton} from "./src/components/TabNavigationButton/TabNavigationButton"
@@ -55,31 +55,36 @@ export default function App() {
     <NavigationContainer theme={navigationTheme}>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={safeAreaViewStyles}>
-        <Tab.Navigator
-          screenOptions={({route}) => {
-            return {
-              tabBarIcon: ({focused}) => (
-                <TabNavigationButton focused={focused} iconName={route.name} />
-              )
-            }
-          }}
-        >
-          <Tab.Screen
-            name={SCREEN_NAMES.HOME}
-            component={HomeScreen}
-            options={defaultScreenOptions}
-          />
-          <Tab.Screen
-            name={SCREEN_NAMES.STATS}
-            component={StatsScreen}
-            options={defaultScreenOptions}
-          />
-          <Tab.Screen
-            name={SCREEN_NAMES.SETTINGS}
-            component={SettingsScreen}
-            options={defaultScreenOptions}
-          />
-        </Tab.Navigator>
+        <SplashScreen>
+          <Tab.Navigator
+            screenOptions={({route}) => {
+              return {
+                tabBarIcon: ({focused}) => (
+                  <TabNavigationButton
+                    focused={focused}
+                    iconName={route.name}
+                  />
+                )
+              }
+            }}
+          >
+            <Tab.Screen
+              name={SCREEN_NAMES.HOME}
+              component={HomeScreen}
+              options={defaultScreenOptions}
+            />
+            <Tab.Screen
+              name={SCREEN_NAMES.STATS}
+              component={StatsScreen}
+              options={defaultScreenOptions}
+            />
+            <Tab.Screen
+              name={SCREEN_NAMES.SETTINGS}
+              component={SettingsScreen}
+              options={defaultScreenOptions}
+            />
+          </Tab.Navigator>
+        </SplashScreen>
       </SafeAreaView>
     </NavigationContainer>
   )
