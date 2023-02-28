@@ -7,5 +7,5 @@ export const FONTS = {
   INTER_MEDIUM: "Inter-Medium",
   INTER_SEMIBOLD: "Inter-SemiBold",
   INTER_REGULAR: "Inter-Regular",
-  INTER_THIN: "Inter-Thin",
-} as const;
+  INTER_THIN: "Inter-Thin"
+} as const

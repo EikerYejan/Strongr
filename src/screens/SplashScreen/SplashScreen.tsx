@@ -8,11 +8,11 @@ import * as SplashScreenApi from "expo-splash-screen"
 // styles
 import {splashScreenStyles} from "./styles"
 
-type Props = {
+interface Props {
   children: JSX.Element
 }
 
-SplashScreenApi.preventAutoHideAsync()
+void SplashScreenApi.preventAutoHideAsync()
 
 export const SplashScreen = ({children}: Props) => {
   const [canRender, setCanRender] = useState(false)

@@ -1,4 +1,5 @@
-import {Text, View, TouchableOpacityProps} from "react-native"
+import {View} from "react-native"
+import type {TouchableOpacityProps} from "react-native"
 
 // components
 import {Icon} from "../Icons/Icons"
@@ -6,10 +7,10 @@ import {Icon} from "../Icons/Icons"
 // constants
 import {COLORS} from "../../constants/colors"
 
-//styles
+// styles
 import {tabNavigationButtonStyles} from "./styles"
 
-export type TabNavigationButtonProps = TouchableOpacityProps & {
+type TabNavigationButtonProps = TouchableOpacityProps & {
   focused?: boolean
   iconName: string
 }

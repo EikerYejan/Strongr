@@ -1,5 +1,5 @@
-import {cloneElement} from "react"
-import Svg, {Path, Rect, SvgProps} from "react-native-svg"
+import type {SvgProps} from "react-native-svg"
+import Svg, {Path, Rect} from "react-native-svg"
 
 const ICONS = {
   Home: ({fill, ...props}: SvgProps) => (
@@ -28,8 +28,6 @@ const ICONS = {
 
 export const Icon = ({name, ...props}: {name: string} & SvgProps) => {
   const Element = ICONS[name as keyof typeof ICONS]
-
-  if (!Element) return null
 
   return <Element {...props} />
 }
