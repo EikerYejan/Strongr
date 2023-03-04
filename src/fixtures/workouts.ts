@@ -1,4 +1,4 @@
-import type {Workout} from "../types/workout"
+import type {Workout} from "@strongr/types/workout"
 
 export const warmup: Workout = {
   imageUrl:

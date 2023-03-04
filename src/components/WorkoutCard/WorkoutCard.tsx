@@ -5,7 +5,7 @@ import {LinearGradient} from "expo-linear-gradient"
 import {workoutCardStyles} from "./styles"
 
 // types
-import type {Workout} from "../../types/workout"
+import type {Workout} from "@strongr/types/workout"
 
 interface Props {
   data: Workout

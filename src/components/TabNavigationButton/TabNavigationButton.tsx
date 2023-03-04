@@ -2,10 +2,10 @@ import {View} from "react-native"
 import type {TouchableOpacityProps} from "react-native"
 
 // components
-import {Icon} from "../Icons/Icons"
+import {Icon} from "@strongr/components/Icons/Icons"
 
 // constants
-import {COLORS} from "../../constants/colors"
+import {COLORS} from "@strongr/constants/colors"
 
 // styles
 import {tabNavigationButtonStyles} from "./styles"

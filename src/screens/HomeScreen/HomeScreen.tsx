@@ -1,13 +1,13 @@
 import {Text, View} from "react-native"
 
 // components
-import {WorkoutCard} from "../../components/WorkoutCard/WorkoutCard"
+import {WorkoutCard} from "@strongr/components/WorkoutCard/WorkoutCard"
 
 // fixgures
-import {warmup} from "../../fixtures/workouts"
+import {warmup} from "@strongr/fixtures/workouts"
 
 // hooks
-import {useStore} from "../../store/store"
+import {useStore} from "@strongr/store/store"
 
 // styles
 import {homeScreenStyles} from "./styles"

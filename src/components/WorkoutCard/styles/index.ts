@@ -1,6 +1,7 @@
 import {StyleSheet} from "react-native"
-import {COLORS} from "../../../constants/colors"
-import {FONTS} from "../../../constants/fonts"
+
+import {COLORS} from "@strongr/constants/colors"
+import {FONTS} from "@strongr/constants/fonts"
 
 export const workoutCardStyles = StyleSheet.create({
   content: {

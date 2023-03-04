@@ -1,14 +1,14 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 // constants
-import {COLORS} from "../constants/colors"
-import {SCREEN_NAMES} from "../constants/screens"
+import {COLORS} from "@strongr/constants/colors"
+import {SCREEN_NAMES} from "@strongr/constants/screens"
 
 // components
-import {HomeScreen} from "../screens/HomeScreen/HomeScreen"
-import {SettingsScreen} from "../screens/SettingsScreen/SettingsScreen"
-import {StatsScreen} from "../screens/StatsScreen/StatsScreen"
-import {TabNavigationButton} from "../components/TabNavigationButton/TabNavigationButton"
+import {HomeScreen} from "@strongr/screens/HomeScreen/HomeScreen"
+import {SettingsScreen} from "@strongr/screens/SettingsScreen/SettingsScreen"
+import {StatsScreen} from "@strongr/screens/StatsScreen/StatsScreen"
+import {TabNavigationButton} from "@strongr/components/TabNavigationButton/TabNavigationButton"
 
 // types
 import type {BottomTabNavigationOptions} from "@react-navigation/bottom-tabs"
