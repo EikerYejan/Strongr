@@ -23,6 +23,10 @@
         "BUNDLE_IDENTIFIER": "com.eikeryejan.preview.strongr"
       }
     },
-    "production": {}
+    "production": {
+      "env": {
+        "BUNDLE_IDENTIFIER": "com.eikeryejan.strongr"
+      }
+    }
   }
 }

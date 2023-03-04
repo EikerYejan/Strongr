@@ -1,5 +1,11 @@
 import {Text, View} from "react-native"
 
+// components
+import {WorkoutCard} from "../../components/WorkoutCard/WorkoutCard"
+
+// fixgures
+import {warmup} from "../../fixtures/workouts"
+
 // hooks
 import {useStore} from "../../store/store"
 
@@ -18,6 +24,9 @@ export const HomeScreen = () => {
           <Text style={homeScreenStyles.userName}>{name}</Text>
         </View>
         <Text style={homeScreenStyles.anouncerText}>Good morning.</Text>
+      </View>
+      <View>
+        <WorkoutCard data={warmup} />
       </View>
     </View>
   )

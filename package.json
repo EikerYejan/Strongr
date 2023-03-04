@@ -12,6 +12,8 @@
     "build:eas:android:preview": "eas build --profile preview --platform android",
     "build:eas:ios:debug": "eas build --profile development --platform ios",
     "build:eas:ios:preview": "eas build --profile preview --platform ios",
+    "build:eas:ios:prod": "eas build --profile production --platform ios",
+    "submit:ios": "eas submit -p ios",
     "lint": "eslint src/**/*.ts{,x}",
     "tsc": "tsc"
   },
@@ -23,6 +25,7 @@
     "expo": "~47.0.12",
     "expo-dev-client": "~2.0.1",
     "expo-font": "^11.0.1",
+    "expo-linear-gradient": "~12.0.1",
     "expo-splash-screen": "^0.17.5",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",

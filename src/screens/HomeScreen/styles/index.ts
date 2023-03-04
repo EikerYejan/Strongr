@@ -15,7 +15,7 @@ export const homeScreenStyles = StyleSheet.create({
   },
   container: {
     paddingTop: 60,
-    paddingLeft: 24
+    paddingHorizontal: 24
   },
   userName: {
     color: COLORS.WHITE,

@@ -19,8 +19,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname 
+    project: "./tsconfig.json",
+    tsconfigRootDir: __dirname
   },
   parser: "@typescript-eslint/parser",
   plugins: ["react", "@typescript-eslint"],
@@ -35,6 +35,7 @@ module.exports = {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "import/namespace": "off",
     "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/no-unsafe-assignment": "off"
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
