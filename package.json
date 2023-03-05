@@ -1,6 +1,6 @@
 {
   "name": "strongr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -14,6 +14,7 @@
     "build:eas:ios:preview": "eas build --profile preview --platform ios",
     "build:eas:ios:prod": "eas build --profile production --platform ios",
     "submit:ios": "eas submit -p ios",
+    "build:testflight": "yarn build:eas:ios:prod && yarn submit:ios",
     "lint": "eslint src/**/*.ts{,x}",
     "tsc": "tsc"
   },
