@@ -1,3 +1,5 @@
+const {version} = require("./package.json") // eslint-disable-line @typescript-eslint/no-var-requires
+
 const BUNDLE_IDENTIFIER =
   process.env.BUNDLE_IDENTIFIER || "com.eikeryejan.strongr"
 
@@ -5,7 +7,7 @@ export default {
   expo: {
     name: "strongr",
     slug: "strongr",
-    version: "1.0.0",
+    version,
     orientation: "portrait",
     icon: "./assets/icon.png",
     userInterfaceStyle: "dark",
