@@ -23,11 +23,24 @@ const ICONS = {
       <Rect x="9.5" y="1" width="5" height="22" rx="2.5" fill={fill} />
       <Rect x="17.5" y="7" width="5" height="16" rx="2.5" fill={fill} />
     </Svg>
+  ),
+  ArrowLeft: ({fill, ...props}: SvgProps) => (
+    <Svg width="10" height="16" viewBox="0 0 10 16" {...props}>
+      <Path
+        d="M8.28585 14.8571L1.42871 7.99997L8.28585 1.14282"
+        stroke={fill}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
   )
 }
 
-export const Icon = ({name, ...props}: {name: string} & SvgProps) => {
-  const Element = ICONS[name as keyof typeof ICONS]
+export type IconName = keyof typeof ICONS
+
+export const Icon = ({name, ...props}: {name: IconName} & SvgProps) => {
+  const Element = ICONS[name]
 
   return <Element {...props} />
 }

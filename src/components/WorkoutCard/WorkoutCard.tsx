@@ -9,15 +9,21 @@ import type {Workout} from "@strongr/types/workout"
 
 interface Props {
   data: Workout
+  onPress?: (data: Workout) => void
 }
 
-export const WorkoutCard = ({data}: Props) => {
-  const {imageUrl, name, description} = data
+export const WorkoutCard = ({data, onPress}: Props) => {
+  const {imageUrl, name, scheduledTime} = data
 
   const gradientColors = ["rgba(17, 17, 18, 0)", "rgba(17, 17, 18, 0.6)"]
 
   return (
-    <TouchableOpacity style={workoutCardStyles.container}>
+    <TouchableOpacity
+      onPress={() => {
+        onPress?.(data)
+      }}
+      style={workoutCardStyles.container}
+    >
       <ImageBackground
         resizeMode="cover"
         style={workoutCardStyles.imageBackground}
@@ -31,7 +37,7 @@ export const WorkoutCard = ({data}: Props) => {
             <Text style={workoutCardStyles.heading}>{name}</Text>
             <View style={workoutCardStyles.textContainer}>
               <View style={workoutCardStyles.textBorder} />
-              <Text style={workoutCardStyles.text}>{description}</Text>
+              <Text style={workoutCardStyles.text}>{scheduledTime}</Text>
             </View>
           </View>
         </LinearGradient>
