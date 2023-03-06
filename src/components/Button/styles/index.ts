@@ -5,18 +5,25 @@ import {StyleSheet} from "react-native"
 // types
 import type {ButtonStyleProps} from "../Button"
 
+const getSize = (size: ButtonStyleProps["size"]) => {
+  if (size === "small") return 40
+
+  return 60
+}
+
 export const getButtonStyles = (props: ButtonStyleProps) => {
-  const {type, rounded} = props
+  const {rounded, size, type} = props
 
   return StyleSheet.create({
     button: {
       width: "auto",
-      height: 60,
-      backgroundColor: type === "dark" ? COLORS.DARK_3 : COLORS.PRIMARY,
+      height: getSize(size),
+      backgroundColor: type === "dark" ? COLORS.DARK_2 : COLORS.PRIMARY,
       borderRadius: rounded ? 50 : 0,
       justifyContent: "center",
       alignItems: "center",
-      flexDirection: "row"
+      flexDirection: "row",
+      paddingHorizontal: 10
     },
     buttonText: {
       fontSize: 17,

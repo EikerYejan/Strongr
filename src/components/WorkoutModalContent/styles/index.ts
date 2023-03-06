@@ -11,10 +11,10 @@ export const workoutModalContentStyles = StyleSheet.create({
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     paddingHorizontal: 24,
-    paddingVertical: 32,
+    paddingTop: 32,
     position: "relative",
-    height: "100%",
-    marginTop: -40
+    marginTop: -40,
+    flex: 1
   },
   closeButton: {
     position: "absolute",
@@ -33,6 +33,9 @@ export const workoutModalContentStyles = StyleSheet.create({
     height: 338,
     backgroundColor: COLORS.DARK_1
   },
+  scrollView: {
+    flex: 1
+  },
   wrapper: {
     position: "relative",
     height: "100%"
@@ -43,18 +46,43 @@ export const workoutModalContentStyles = StyleSheet.create({
     fontFamily: FONTS.INTER_SEMIBOLD,
     color: COLORS.WHITE
   },
+  workoutExcerpt: {
+    color: COLORS.PRIMARY,
+    marginTop: 8,
+    marginBottom: 32,
+    fontSize: 14,
+    fontWeight: "400",
+    fontFamily: FONTS.INTER_REGULAR
+  },
+  workoutInfoWrapper: {
+    flexDirection: "row"
+  },
+  workoutInfoItem: {
+    marginRight: 16
+  },
   workoutDescription: {
     fontSize: 15,
     fontWeight: "400",
     fontFamily: FONTS.INTER_REGULAR,
-    color: COLORS.WHITE,
-    marginVertical: 32,
-    marginBottom: 1000
+    color: COLORS.SOFT,
+    marginVertical: 32
   },
   workoutStartButtonWrapper: {
     position: "absolute",
-    width: 300,
-    bottom: 60,
-    left: vw / 2 - 150
+    width: vw,
+    bottom: 0,
+    left: 0,
+    height: 190,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  workoutStartButton: {
+    width: 260
+  },
+  workoutStepsWrapper: {
+    paddingBottom: 150
+  },
+  workoutStepItem: {
+    marginBottom: 16
   }
 })
