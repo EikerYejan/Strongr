@@ -25,7 +25,7 @@ export interface ButtonStyleProps {
   type?: ButtonType
 }
 
-interface ButtonProps
+export interface ButtonProps
   extends Omit<TouchableOpacityProps, "children">,
     ButtonStyleProps {
   leftIconName?: IconName

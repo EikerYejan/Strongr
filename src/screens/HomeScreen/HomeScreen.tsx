@@ -3,6 +3,7 @@ import {Modal, Text, View} from "react-native"
 
 // components
 import {Card} from "@strongr/components/Card/Card"
+import {SectionHeading} from "@strongr/components/SectionHeading/SectionHeading"
 
 // fixgures
 import {warmup} from "@strongr/fixtures/workouts"
@@ -12,22 +13,49 @@ import {useStore} from "@strongr/store/store"
 
 // styles
 import {homeScreenStyles} from "./styles"
-import {WorkoutModalContent} from "@strongr/components/WorkoutModalContent/WorkoutModalContent"
+import {ContentModal} from "@strongr/components/ContentModal/ContentModal"
 
 // types
-import {SectionHeading} from "@strongr/components/SectionHeading/SectionHeading"
+import type {ModalData} from "@strongr/components/ContentModal/ContentModal"
 
 export const HomeScreen = () => {
   const [activeModalID, setActiveModalID] = useState<string>()
 
   const {userData} = useStore()
-  const {name} = userData
+  const {name: userName} = userData
 
-  const modalWorkoutData = useMemo(() => {
+  const modalWorkoutData = useMemo<ModalData | null>(() => {
     // search for Id here
 
     if (activeModalID) {
-      return warmup
+      const {caloriesBurned, description, excerpt, imageUrl, name, steps} =
+        warmup
+
+      return {
+        description,
+        heading: name,
+        imageUrl,
+        subHeading: excerpt,
+        firstButtonProps: {
+          disabled: true,
+          leftIconName: "Flame",
+          size: "small",
+          title: `${caloriesBurned} cal`,
+          type: "dark"
+        },
+        secondButtonProps: {
+          disabled: true,
+          leftIconName: "Play",
+          size: "small",
+          title: "30 min",
+          type: "dark"
+        },
+        cards: steps.map((step) => ({
+          imageUrl: step.imageUrl,
+          title: step.title,
+          subtitle: `0:${step.durationSeconds}`
+        }))
+      }
     }
 
     return null
@@ -49,13 +77,13 @@ export const HomeScreen = () => {
         visible={!!modalWorkoutData}
       >
         {modalWorkoutData ? (
-          <WorkoutModalContent data={modalWorkoutData} onClose={onModalClose} />
+          <ContentModal data={modalWorkoutData} onClose={onModalClose} />
         ) : null}
       </Modal>
       <View style={homeScreenStyles.anouncer}>
         <View style={homeScreenStyles.greetingWrapper}>
           <Text style={homeScreenStyles.greeting}>Hello,&nbsp;</Text>
-          <Text style={homeScreenStyles.userName}>{name}</Text>
+          <Text style={homeScreenStyles.userName}>{userName}</Text>
         </View>
         <Text style={homeScreenStyles.anouncerText}>Good morning.</Text>
       </View>

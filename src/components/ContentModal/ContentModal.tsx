@@ -13,22 +13,38 @@ import {COLORS} from "@strongr/constants/colors"
 import {workoutModalContentStyles as styles} from "./styles"
 
 // types
-import type {Workout} from "@strongr/types/workout"
+import type {ButtonProps} from "@strongr/components/Button/Button"
+
+interface ModalCard {
+  imageUrl: string
+  subtitle: string
+  title: string
+}
+
+export interface ModalData {
+  cards?: ModalCard[]
+  description: string
+  firstButtonProps?: ButtonProps
+  heading: string
+  imageUrl: string
+  secondButtonProps?: ButtonProps
+  subHeading?: string
+}
 
 interface Props {
   onClose: () => void
-  data: Workout
+  data: ModalData
 }
 
-export const WorkoutModalContent = ({data, onClose}: Props) => {
+export const ContentModal = ({data, onClose}: Props) => {
   const {
-    caloriesBurned,
+    cards = [],
     description,
-    durationMinutes,
-    excerpt,
+    firstButtonProps,
+    heading,
     imageUrl,
-    name,
-    steps
+    secondButtonProps,
+    subHeading
   } = data
 
   return (
@@ -45,40 +61,21 @@ export const WorkoutModalContent = ({data, onClose}: Props) => {
           style={styles.scrollView}
           indicatorStyle="white"
         >
-          <Text style={styles.workoutName}>{name}</Text>
-          <Text style={styles.workoutExcerpt}>{excerpt}</Text>
+          <Text style={styles.workoutName}>{heading}</Text>
+          <Text style={styles.workoutExcerpt}>{subHeading}</Text>
           <View style={styles.workoutInfoWrapper}>
-            <Button
-              disabled
-              leftIconName="Play"
-              style={styles.workoutInfoItem}
-              size="small"
-              title={`${durationMinutes} min`}
-              type="dark"
-            />
-            <Button
-              disabled
-              leftIconName="Flame"
-              size="small"
-              title={`${caloriesBurned} cal`}
-              type="dark"
-            />
+            {firstButtonProps ? (
+              <Button style={styles.workoutInfoItem} {...firstButtonProps} />
+            ) : null}
+            {secondButtonProps ? <Button {...secondButtonProps} /> : null}
           </View>
           <Text style={styles.workoutDescription}>{description}</Text>
           <View style={styles.workoutStepsWrapper}>
-            {steps.map((item) => {
-              const {durationSeconds, id, imageUrl: workoutImage, title} = item
-
-              return (
-                <View key={id} style={styles.workoutStepItem}>
-                  <SmallCard
-                    imageUrl={workoutImage}
-                    subtitle={`0:${durationSeconds}`}
-                    title={title}
-                  />
-                </View>
-              )
-            })}
+            {cards.map((card, i) => (
+              <View key={`${card.title}-${i}`} style={styles.workoutStepItem}>
+                <SmallCard {...card} />
+              </View>
+            ))}
           </View>
         </ScrollView>
       </View>
