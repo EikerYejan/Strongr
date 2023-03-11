@@ -4,25 +4,40 @@ import {LinearGradient} from "expo-linear-gradient"
 // styles
 import {cardStyles as styles} from "./styles"
 
+// types
+import type {ViewStyle} from "react-native"
+
 interface Props {
+  description?: string
   imageUrl?: string
-  title: string
-  subtitle?: string
   onPress?: () => void
+  styles?: ViewStyle
+  subtitle?: string
+  title: string
 }
 
-export const Card = ({imageUrl, title, subtitle, onPress}: Props) => {
+export const Card = ({
+  description,
+  imageUrl,
+  onPress,
+  styles: customStyles = {},
+  subtitle,
+  title
+}: Props) => {
   const gradientColors = ["rgba(17, 17, 18, 0)", "rgba(17, 17, 18, 0.6)"]
+  const BackgroundComponent = (
+    imageUrl ? ImageBackground : View
+  ) as React.ComponentType<any> // eslint-disable-line @typescript-eslint/no-explicit-any
 
   return (
     <TouchableOpacity
       disabled={!onPress}
       onPress={onPress}
-      style={styles.container}
+      style={[styles.container, customStyles]}
     >
-      <ImageBackground
+      <BackgroundComponent
         resizeMode="cover"
-        style={styles.imageBackground}
+        style={[styles.imageBackground, styles.defaultWrapper]}
         source={{uri: imageUrl}}
       >
         <LinearGradient style={styles.imageBackground} colors={gradientColors}>
@@ -34,9 +49,12 @@ export const Card = ({imageUrl, title, subtitle, onPress}: Props) => {
                 <Text style={styles.text}>{subtitle}</Text>
               </View>
             ) : null}
+            {description ? (
+              <Text style={styles.description}>{description}</Text>
+            ) : null}
           </View>
         </LinearGradient>
-      </ImageBackground>
+      </BackgroundComponent>
     </TouchableOpacity>
   )
 }

@@ -38,7 +38,7 @@ export const cardStyles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: "row",
-    paddingLeft: 5,
+    paddingLeft: 0,
     alignItems: "center"
   },
   textBorder: {
@@ -47,5 +47,15 @@ export const cardStyles = StyleSheet.create({
     borderLeftColor: COLORS.PRIMARY,
     marginRight: 5,
     marginTop: 4
+  },
+  defaultWrapper: {
+    backgroundColor: COLORS.SECONDARY
+  },
+  description: {
+    color: COLORS.WHITE,
+    marginTop: 20,
+    fontFamily: FONTS.INTER_REGULAR,
+    fontSize: 13,
+    fontWeight: "400"
   }
 })

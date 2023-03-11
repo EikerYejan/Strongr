@@ -1,6 +1,7 @@
 import "expo-dev-client"
 
 import {SafeAreaView, StatusBar} from "react-native"
+import {QueryClient, QueryClientProvider} from "react-query"
 
 // constants
 import {COLORS} from "./src/constants/colors"
@@ -32,14 +33,18 @@ const navigationTheme: Theme = {
   dark: true
 }
 
+const queryClient = new QueryClient()
+
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={safeAreaViewStyles}>
-        <SplashScreen>
-          <RootNavigator />
-        </SplashScreen>
+        <QueryClientProvider client={queryClient}>
+          <SplashScreen>
+            <RootNavigator />
+          </SplashScreen>
+        </QueryClientProvider>
       </SafeAreaView>
     </NavigationContainer>
   )
