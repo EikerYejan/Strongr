@@ -27,7 +27,10 @@ export default {
     ios: {
       buildNumber,
       supportsTablet: true,
-      bundleIdentifier: BUNDLE_IDENTIFIER
+      bundleIdentifier: BUNDLE_IDENTIFIER,
+      infoPlist: {
+        ITSAppUsesNonExemptEncryption: false
+      }
     },
     android: {
       adaptiveIcon: {
