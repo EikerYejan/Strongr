@@ -1,7 +1,11 @@
-const {version} = require("./package.json") // eslint-disable-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+const {generate} = require("build-number-generator")
+const {version} = require("./package.json")
 
 const BUNDLE_IDENTIFIER =
   process.env.BUNDLE_IDENTIFIER || "com.eikeryejan.strongr"
+
+const buildNumber = generate()
 
 export default {
   expo: {
@@ -21,6 +25,7 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     ios: {
+      buildNumber,
       supportsTablet: true,
       bundleIdentifier: BUNDLE_IDENTIFIER
     },
