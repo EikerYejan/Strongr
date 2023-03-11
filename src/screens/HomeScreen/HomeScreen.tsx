@@ -2,7 +2,7 @@ import {useMemo, useState} from "react"
 import {Modal, Text, View} from "react-native"
 
 // components
-import {WorkoutCard} from "@strongr/components/WorkoutCard/WorkoutCard"
+import {Card} from "@strongr/components/Card/Card"
 
 // fixgures
 import {warmup} from "@strongr/fixtures/workouts"
@@ -15,7 +15,6 @@ import {homeScreenStyles} from "./styles"
 import {WorkoutModalContent} from "@strongr/components/WorkoutModalContent/WorkoutModalContent"
 
 // types
-import type {Workout} from "@strongr/types/workout"
 import {SectionHeading} from "@strongr/components/SectionHeading/SectionHeading"
 
 export const HomeScreen = () => {
@@ -34,8 +33,8 @@ export const HomeScreen = () => {
     return null
   }, [activeModalID])
 
-  const onWotkoutCardPress = (data: Workout) => {
-    setActiveModalID(data.id)
+  const onWotkoutCardPress = () => {
+    setActiveModalID(warmup.id)
   }
 
   const onModalClose = () => {
@@ -62,7 +61,12 @@ export const HomeScreen = () => {
       </View>
       <View>
         <SectionHeading heading="Today Workout Plan" rightText="Mon 26 Apr" />
-        <WorkoutCard data={warmup} onPress={onWotkoutCardPress} />
+        <Card
+          title={warmup.name}
+          subtitle={warmup.scheduledTime}
+          imageUrl={warmup.imageUrl}
+          onPress={onWotkoutCardPress}
+        />
       </View>
     </View>
   )

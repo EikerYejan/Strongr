@@ -3,7 +3,7 @@ import {StyleSheet} from "react-native"
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
 
-export const workoutCardStyles = StyleSheet.create({
+export const cardStyles = StyleSheet.create({
   content: {
     marginTop: "auto",
     padding: 16
