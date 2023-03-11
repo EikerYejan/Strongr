@@ -60,5 +60,7 @@ export type IconName = keyof typeof ICONS
 export const Icon = ({name, ...props}: {name: IconName} & SvgProps) => {
   const Element = ICONS[name]
 
+  if (!Element) return null
+
   return <Element {...props} />
 }

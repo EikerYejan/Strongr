@@ -10,9 +10,12 @@ import {COLORS} from "@strongr/constants/colors"
 // styles
 import {tabNavigationButtonStyles} from "./styles"
 
+// types
+import type {IconName} from "@strongr/components/Icons/Icons"
+
 type TabNavigationButtonProps = TouchableOpacityProps & {
   focused?: boolean
-  iconName: string
+  iconName: IconName
 }
 
 export const TabNavigationButton = ({
