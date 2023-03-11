@@ -1,5 +1,13 @@
-import {Image, Pressable, ScrollView, Text, View} from "react-native"
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  useWindowDimensions,
+  View
+} from "react-native"
 import {LinearGradient} from "expo-linear-gradient"
+import Html from "react-native-render-html"
 
 // components
 import {Icon} from "@strongr/components/Icons/Icons"
@@ -47,6 +55,8 @@ export const ContentModal = ({data, onClose}: Props) => {
     subHeading
   } = data
 
+  const {width} = useWindowDimensions()
+
   return (
     <View style={styles.wrapper}>
       <Pressable style={styles.closeButton} onPress={onClose}>
@@ -69,7 +79,11 @@ export const ContentModal = ({data, onClose}: Props) => {
             ) : null}
             {secondButtonProps ? <Button {...secondButtonProps} /> : null}
           </View>
-          <Text style={styles.workoutDescription}>{description}</Text>
+          <Html
+            baseStyle={styles.workoutDescription}
+            contentWidth={width}
+            source={{html: description}}
+          />
           <View style={styles.workoutStepsWrapper}>
             {cards.map((card, i) => (
               <View key={`${card.title}-${i}`} style={styles.workoutStepItem}>
