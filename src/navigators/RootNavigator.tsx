@@ -32,6 +32,7 @@ const defaultScreenOptions: BottomTabNavigationOptions = {
 export const RootNavigator = () => {
   return (
     <Tab.Navigator
+      initialRouteName={SCREEN_NAMES.HOME}
       screenOptions={({route}) => {
         const screenConfig =
           screensConfig[route.name as $Values<typeof SCREEN_NAMES>]
