@@ -1,13 +1,6 @@
-import {
-  Image,
-  Pressable,
-  ScrollView,
-  Text,
-  useWindowDimensions,
-  View
-} from "react-native"
+import {Children, cloneElement} from "react"
+import {Image, Pressable, ScrollView, Text, View} from "react-native"
 import {LinearGradient} from "expo-linear-gradient"
-import Html from "react-native-render-html"
 
 // components
 import {Icon} from "@strongr/components/Icons/Icons"
@@ -21,6 +14,7 @@ import {COLORS} from "@strongr/constants/colors"
 import {workoutModalContentStyles as styles} from "./styles"
 
 // types
+import type {ReactElement} from "react"
 import type {ButtonProps} from "@strongr/components/Button/Button"
 
 interface ModalCard {
@@ -31,7 +25,7 @@ interface ModalCard {
 
 export interface ModalData {
   cards?: ModalCard[]
-  description: string
+  description: string | React.ReactNode[]
   firstButtonProps?: ButtonProps
   heading: string
   imageUrl: string
@@ -55,7 +49,15 @@ export const ContentModal = ({data, onClose}: Props) => {
     subHeading
   } = data
 
-  const {width} = useWindowDimensions()
+  const mapDescription = () => {
+    if (typeof description === "string") return null
+
+    return Children.map(description, (child) => {
+      return cloneElement(child as ReactElement, {
+        style: styles.workoutDescription
+      })
+    })
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -72,18 +74,23 @@ export const ContentModal = ({data, onClose}: Props) => {
           indicatorStyle="white"
         >
           <Text style={styles.workoutName}>{heading}</Text>
-          <Text style={styles.workoutExcerpt}>{subHeading}</Text>
+          {subHeading ? (
+            <Text style={styles.workoutExcerpt}>{subHeading}</Text>
+          ) : null}
           <View style={styles.workoutInfoWrapper}>
             {firstButtonProps ? (
               <Button style={styles.workoutInfoItem} {...firstButtonProps} />
             ) : null}
             {secondButtonProps ? <Button {...secondButtonProps} /> : null}
           </View>
-          <Html
-            baseStyle={styles.workoutDescription}
-            contentWidth={width}
-            source={{html: description}}
-          />
+          <View style={styles.workoutDescriptionWrapper}>
+            <Text style={styles.workoutDescriptionTitle}>Instructions</Text>
+            {typeof description === "string" ? (
+              <Text style={styles.workoutDescription}>{description}</Text>
+            ) : (
+              mapDescription()
+            )}
+          </View>
           <View style={styles.workoutStepsWrapper}>
             {cards.map((card, i) => (
               <View key={`${card.title}-${i}`} style={styles.workoutStepItem}>

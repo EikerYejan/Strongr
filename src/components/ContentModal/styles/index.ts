@@ -55,7 +55,8 @@ export const workoutModalContentStyles = StyleSheet.create({
     fontFamily: FONTS.INTER_REGULAR
   },
   workoutInfoWrapper: {
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop: 32
   },
   workoutInfoItem: {
     marginRight: 16
@@ -65,7 +66,17 @@ export const workoutModalContentStyles = StyleSheet.create({
     fontWeight: "400",
     fontFamily: FONTS.INTER_REGULAR,
     color: COLORS.SOFT,
-    marginVertical: 32
+    marginBottom: 16
+  },
+  workoutDescriptionWrapper: {
+    marginTop: 32
+  },
+  workoutDescriptionTitle: {
+    fontSize: 20,
+    fontWeight: "600",
+    fontFamily: FONTS.INTER_SEMIBOLD,
+    color: COLORS.WHITE,
+    marginBottom: 32
   },
   workoutStartButtonWrapper: {
     position: "absolute",

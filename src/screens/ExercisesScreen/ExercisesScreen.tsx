@@ -18,6 +18,12 @@ import type {ModalData} from "@strongr/components/ContentModal/ContentModal"
 import {fetchExercises} from "@strongr/services/Api/exercises"
 import {Button} from "@strongr/components/Button/Button"
 
+const transformDescription = (description: string) => {
+  return description
+    .split("||")
+    .map((text, i) => <Text key={i}>{`${i}. ${text}`}</Text>)
+}
+
 export const ExercisesScreen = () => {
   const [modalData, setModalData] = useState<ModalData>()
 
@@ -31,15 +37,18 @@ export const ExercisesScreen = () => {
   const refetch = async () => queryClient.invalidateQueries("exercises")
 
   const onItemPress = (item: Exercise) => {
+    const description = transformDescription(item.instructions)
+
     setModalData({
       heading: item.name,
-      description: item.description,
+      description,
       imageUrl:
         "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1024&q=80",
       firstButtonProps: {
+        disabled: true,
         leftIconName: "Barbell",
         size: "small",
-        title: item.category.name,
+        title: item.category,
         type: "dark"
       }
     })
@@ -60,7 +69,7 @@ export const ExercisesScreen = () => {
           onPress={onPress}
           styles={styles.card}
           title={item.name}
-          subtitle={item.category.name}
+          subtitle={item.category}
         />
       </View>
     )
@@ -89,7 +98,7 @@ export const ExercisesScreen = () => {
         <FlatList
           data={exercises}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.name}
         />
       </View>
     )
