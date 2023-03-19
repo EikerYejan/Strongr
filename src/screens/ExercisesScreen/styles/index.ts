@@ -26,5 +26,8 @@ export const exercisesScreenStyles = StyleSheet.create({
   },
   loader: {
     top: vh / 2 - 200
+  },
+  searchBarWrapper: {
+    marginBottom: 24
   }
 })

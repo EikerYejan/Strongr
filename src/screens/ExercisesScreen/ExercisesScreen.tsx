@@ -1,10 +1,15 @@
 import {useState} from "react"
 import {ActivityIndicator, FlatList, Modal, Text, View} from "react-native"
-import {useQuery, useQueryClient} from "react-query"
+import {useQuery} from "react-query"
 
 // components
 import {ContentModal} from "@strongr/components/ContentModal/ContentModal"
 import {Card} from "@strongr/components/Card/Card"
+import {Button} from "@strongr/components/Button/Button"
+import {SearchInput} from "@strongr/components/SearchInput/SearchInput"
+
+// hooks
+import {useDebounce} from "@strongr/hooks/useDebounce"
 
 // styles
 import {exercisesScreenStyles as styles} from "./styles"
@@ -19,25 +24,27 @@ import {
   buildExerciseImageURL,
   fetchExercises
 } from "@strongr/services/Api/exercises"
-import {Button} from "@strongr/components/Button/Button"
 
 const transformDescription = (description: string) => {
   return description
     ?.split("||")
-    ?.map((text, i) => <Text key={i}>{`${i}. ${text}`}</Text>)
+    ?.map((text, i) => <Text key={i}>{`${i + 1}. ${text}`}</Text>)
 }
 
 export const ExercisesScreen = () => {
   const [modalData, setModalData] = useState<ModalData>()
+  const [search, setSearch] = useState<string | undefined>()
 
-  const queryClient = useQueryClient()
+  const searchTerm = useDebounce(search, 500)
+
   const {
     data: exercises = [],
     isLoading,
-    error
-  } = useQuery("exercises", fetchExercises)
-
-  const refetch = async () => queryClient.invalidateQueries("exercises")
+    error,
+    refetch
+  } = useQuery(["exercises", searchTerm], async () =>
+    fetchExercises(searchTerm)
+  )
 
   const onItemPress = (item: Exercise) => {
     const description = transformDescription(item.instructions)
@@ -60,6 +67,10 @@ export const ExercisesScreen = () => {
     setModalData(undefined)
   }
 
+  const onSearchSubmit = async () => {
+    await refetch()
+  }
+
   const renderItem = ({item}: ListRenderItemInfo<Exercise>) => {
     const onPress = () => {
       onItemPress(item)
@@ -78,7 +89,7 @@ export const ExercisesScreen = () => {
   }
 
   const renderContent = () => {
-    if (isLoading && !error) {
+    if (isLoading && !exercises.length && !error) {
       return (
         <ActivityIndicator style={styles.loader} size="large" color="white" />
       )
@@ -118,6 +129,14 @@ export const ExercisesScreen = () => {
           <ContentModal onClose={onModalClose} data={modalData} />
         ) : null}
       </Modal>
+      <View style={styles.searchBarWrapper}>
+        <SearchInput
+          disabled={isLoading}
+          initialValue={searchTerm}
+          onChangeText={setSearch}
+          onSubmit={onSearchSubmit}
+        />
+      </View>
       {renderContent()}
     </View>
   )
