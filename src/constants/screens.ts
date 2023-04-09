@@ -16,6 +16,11 @@ export const SCREEN_NAMES = {
   STATS: "Stats"
 } as const
 
+export const NAVIGATORS = {
+  SETTINGS_NAVIGATOR: "SettingsNavigator",
+  TABS_NAVIGATOR: "TabsNavigator"
+} as const
+
 export const screensConfig: Record<
   $Values<typeof SCREEN_NAMES>,
   ScreenConfig

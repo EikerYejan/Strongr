@@ -1,4 +1,5 @@
 import "expo-dev-client"
+import "react-native-gesture-handler"
 
 import {SafeAreaView, StatusBar} from "react-native"
 import {QueryClient, QueryClientProvider} from "react-query"
