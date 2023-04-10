@@ -36,6 +36,17 @@ const ICONS = {
       />
     </Svg>
   ),
+  ArrowRight: ({fill, ...props}: SvgProps) => (
+    <Svg width="8" height="14" viewBox="0 0 8 14" {...props}>
+      <Path
+        d="M1 13L7 7L0.999999 1"
+        stroke={fill}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ),
   Play: ({fill, ...props}: SvgProps) => (
     <Svg width="19" height="19" viewBox="0 0 19 19" fill="none" {...props}>
       <Path

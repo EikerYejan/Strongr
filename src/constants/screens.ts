@@ -8,21 +8,24 @@ interface ScreenConfig {
 }
 
 export const SCREEN_NAMES = {
+  EDIT_PROFILE: "EditProfile",
   EXERCISES: "Exercises",
   HOME: "Home",
   LOGIN: "Login",
+  PRIVACY: "Privacy",
+  PROFILE: "Profile",
   SETTINGS: "Settings",
   SPLASH: "Splash",
   STATS: "Stats"
 } as const
 
 export const NAVIGATORS = {
-  SETTINGS_NAVIGATOR: "SettingsNavigator",
+  PROFILE_NAVIGATOR: "ProfileNavigator",
   TABS_NAVIGATOR: "TabsNavigator"
 } as const
 
 export const screensConfig: Record<
-  $Values<typeof SCREEN_NAMES>,
+  $Values<Pick<typeof SCREEN_NAMES, "HOME" | "EXERCISES" | "SETTINGS">>,
   ScreenConfig
 > = {
   [SCREEN_NAMES.EXERCISES]: {
@@ -31,14 +34,7 @@ export const screensConfig: Record<
   [SCREEN_NAMES.HOME]: {
     iconName: "Home"
   },
-  [SCREEN_NAMES.LOGIN]: {
-    iconName: "Stats"
-  },
   [SCREEN_NAMES.SETTINGS]: {
     iconName: "Settings"
-  },
-  [SCREEN_NAMES.SPLASH]: {},
-  [SCREEN_NAMES.STATS]: {
-    iconName: "Stats"
   }
 }

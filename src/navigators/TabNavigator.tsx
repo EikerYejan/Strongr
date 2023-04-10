@@ -16,7 +16,6 @@ import {ExercisesScreen} from "@strongr/screens/ExercisesScreen/ExercisesScreen"
 // types
 import type {BottomTabNavigationOptions} from "@react-navigation/bottom-tabs"
 import type {NavigationProp} from "@react-navigation/native"
-import type {$Values} from "@strongr/types/helpers"
 
 interface Props {
   navigation: NavigationProp<Record<string, unknown>>
@@ -44,7 +43,7 @@ export const TabNavigator = ({navigation}: Props) => {
       initialRouteName={SCREEN_NAMES.HOME}
       screenOptions={({route}) => {
         const screenConfig =
-          screensConfig[route.name as $Values<typeof SCREEN_NAMES>]
+          screensConfig[route.name as keyof typeof screensConfig]
 
         return {
           tabBarIcon: ({focused}) =>
@@ -74,8 +73,8 @@ export const TabNavigator = ({navigation}: Props) => {
         listeners={{
           tabPress: (e) => {
             e.preventDefault()
-            navigation.navigate(NAVIGATORS.SETTINGS_NAVIGATOR, {
-              screen: SCREEN_NAMES.SETTINGS
+            navigation.navigate(NAVIGATORS.PROFILE_NAVIGATOR, {
+              screen: SCREEN_NAMES.PROFILE
             })
           }
         }}
