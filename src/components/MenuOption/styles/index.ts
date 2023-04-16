@@ -3,6 +3,9 @@ import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
 
 export const menuOptionStyles = StyleSheet.create({
+  checkbox: {
+    backgroundColor: "transparent"
+  },
   container: {
     alignItems: "center",
     borderBottomColor: COLORS.DARK_2,
@@ -11,6 +14,9 @@ export const menuOptionStyles = StyleSheet.create({
     height: 60,
     justifyContent: "space-between",
     paddingRight: 12
+  },
+  disabled: {
+    opacity: 0.35
   },
   label: {
     color: COLORS.WHITE,

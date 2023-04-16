@@ -21,6 +21,7 @@ export const ProfileScreen = ({navigation}: Props) => {
 
   const menuOptions = [
     {
+      disabled: true,
       label: "Edit Profile",
       onPress: () => {
         onOptionPress(SCREEN_NAMES.EDIT_PROFILE)
@@ -51,6 +52,7 @@ export const ProfileScreen = ({navigation}: Props) => {
           <MenuOption key={option.label} {...option} />
         ))}
         <MenuOption
+          disabled
           label="Sign Out"
           labelStyles={{color: COLORS.ERROR, fontSize: 17}}
           showIcon={false}

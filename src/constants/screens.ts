@@ -15,6 +15,7 @@ export const SCREEN_NAMES = {
   PRIVACY: "Privacy",
   PROFILE: "Profile",
   SETTINGS: "Settings",
+  SETTINGS_CONTENT: "SettingsContent",
   SPLASH: "Splash",
   STATS: "Stats"
 } as const
@@ -38,3 +39,10 @@ export const screensConfig: Record<
     iconName: "Settings"
   }
 }
+
+export const settingsContentType = {
+  NOTIFICATIONS: "Notifications",
+  UNITS_OF_MEASURE: "Units of Measure"
+} as const
+
+export type SettingsContentType = $Values<typeof settingsContentType>
