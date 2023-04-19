@@ -3,6 +3,7 @@ import "react-native-gesture-handler"
 
 import {SafeAreaView, StatusBar} from "react-native"
 import {QueryClient, QueryClientProvider} from "react-query"
+import {RecoilRoot} from "recoil"
 
 // constants
 import {COLORS} from "./src/constants/colors"
@@ -42,9 +43,11 @@ export default function App() {
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={safeAreaViewStyles}>
         <QueryClientProvider client={queryClient}>
-          <SplashScreen>
-            <RootNavigator />
-          </SplashScreen>
+          <RecoilRoot>
+            <SplashScreen>
+              <RootNavigator />
+            </SplashScreen>
+          </RecoilRoot>
         </QueryClientProvider>
       </SafeAreaView>
     </NavigationContainer>

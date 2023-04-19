@@ -1,35 +1,59 @@
 import {View} from "react-native"
-import {useCallback, useState} from "react"
+import {useCallback} from "react"
 
 // components
 import {ScreenWrapper} from "../ScreenWrapper/ScreenWrapper"
+import {MenuOption} from "../MenuOption/MenuOption"
 
 // constants
 import {settingsContentType} from "@strongr/constants/screens"
 
+// hooks
+import {useAppState} from "@strongr/store/store"
+
 // types
 import type {SettingsContentType} from "@strongr/constants/screens"
-import {MenuOption} from "../MenuOption/MenuOption"
 
 interface Props {
   contentType: SettingsContentType
 }
 
 export const SettingsContent = ({contentType}: Props) => {
-  const [unitOfMeasure, setUnitOfMeasure] = useState<"metric" | "imperial">(
-    "metric"
-  )
-  const [enableWorkoutReminders, setEnableWorkoutReminders] = useState(true)
-  const [enableProgramNotifications, setEnableProgramNotifications] =
-    useState(false)
+  const {
+    appState: {user},
+    updateAppState
+  } = useAppState()
+  const {settings} = user || {}
+  const {enableProgramNotifications, enableWorkoutReminders, measureUnit} =
+    settings
 
   const onUnitOfMeasureChange = useCallback(
-    (value: boolean, key: typeof unitOfMeasure) => () => {
+    (value: boolean, key: typeof measureUnit) => () => {
       if (value) {
-        setUnitOfMeasure(key)
+        updateAppState({
+          user: {
+            settings: {
+              measureUnit: key
+            }
+          }
+        })
       }
     },
-    []
+    [updateAppState]
+  )
+
+  const onNotificationsChange = useCallback(
+    (reminders: boolean, programNotifications: boolean) => {
+      updateAppState({
+        user: {
+          settings: {
+            enableWorkoutReminders: reminders,
+            enableProgramNotifications: programNotifications
+          }
+        }
+      })
+    },
+    [updateAppState]
   )
 
   const renderContent = useCallback(() => {
@@ -38,14 +62,14 @@ export const SettingsContent = ({contentType}: Props) => {
         return (
           <>
             <MenuOption
-              checked={unitOfMeasure === "metric"}
+              checked={measureUnit === "metric"}
               inidicatorType="check"
               key="metric"
               label="Metric"
               onCheck={onUnitOfMeasureChange(true, "metric")}
             />
             <MenuOption
-              checked={unitOfMeasure === "imperial"}
+              checked={measureUnit === "imperial"}
               inidicatorType="check"
               key="imperial"
               label="Imperial"
@@ -62,14 +86,18 @@ export const SettingsContent = ({contentType}: Props) => {
               inidicatorType="toggle"
               key="Reminders"
               label="Workout Reminders"
-              onCheck={setEnableWorkoutReminders}
+              onCheck={(val) => {
+                onNotificationsChange(val, enableProgramNotifications)
+              }}
             />
             <MenuOption
               checked={enableProgramNotifications}
               inidicatorType="toggle"
               key="Program"
               label="Program Notifications"
-              onCheck={setEnableProgramNotifications}
+              onCheck={(val) => {
+                onNotificationsChange(enableWorkoutReminders, val)
+              }}
             />
           </>
         )
@@ -81,8 +109,9 @@ export const SettingsContent = ({contentType}: Props) => {
     contentType,
     enableProgramNotifications,
     enableWorkoutReminders,
-    onUnitOfMeasureChange,
-    unitOfMeasure
+    measureUnit,
+    onNotificationsChange,
+    onUnitOfMeasureChange
   ])
 
   return (

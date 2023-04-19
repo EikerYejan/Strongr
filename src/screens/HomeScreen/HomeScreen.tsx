@@ -9,7 +9,7 @@ import {SectionHeading} from "@strongr/components/SectionHeading/SectionHeading"
 import {warmup} from "@strongr/fixtures/workouts"
 
 // hooks
-import {useStore} from "@strongr/store/store"
+import {useAppState} from "@strongr/store/store"
 
 // styles
 import {homeScreenStyles} from "./styles"
@@ -21,8 +21,10 @@ import type {ModalData} from "@strongr/components/ContentModal/ContentModal"
 export const HomeScreen = () => {
   const [activeModalID, setActiveModalID] = useState<string>()
 
-  const {userData} = useStore()
-  const {name: userName} = userData
+  const {
+    appState: {user}
+  } = useAppState()
+  const {name: userName} = user
 
   const modalWorkoutData = useMemo<ModalData | null>(() => {
     // search for Id here
