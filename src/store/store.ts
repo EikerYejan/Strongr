@@ -6,21 +6,7 @@ import merge from "ts-deepmerge"
 import {Storage} from "./storage"
 
 // types
-import type {DeepPartial} from "@strongr/types/helpers"
-
-export type AppState = typeof defaultAppState
-
-export const defaultAppState = {
-  user: {
-    name: "Stranger",
-    email: undefined as string | undefined,
-    settings: {
-      measureUnit: "metric",
-      enableWorkoutReminders: true,
-      enableProgramNotifications: false
-    }
-  }
-}
+import type {AppState, DeepPartial} from "@strongr/types"
 
 const storedState = Storage.getAppStorage()
 

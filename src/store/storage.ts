@@ -1,23 +1,44 @@
 import {MMKV} from "react-native-mmkv"
 
 // types
-import type {AppState} from "./store"
+import type {AppState} from "@strongr/types"
 
-const STORAGE_KEY = "appState"
-const storage = new MMKV()
+const defaultAppState: AppState = {
+  user: {
+    name: "Stranger",
+    email: undefined as string | undefined,
+    settings: {
+      measureUnit: "metric",
+      enableWorkoutReminders: true,
+      enableProgramNotifications: false
+    }
+  }
+}
 
 class StorageService {
+  private readonly storage = new MMKV()
+
+  private readonly STORAGE_KEY = "appState"
+
+  public init() {
+    const storedData = this.getAppStorage()
+
+    if (!Object.keys(storedData).length) {
+      this.updateAppStorage(defaultAppState)
+    }
+  }
+
   public updateAppStorage(value: AppState) {
-    storage.set(STORAGE_KEY, JSON.stringify(value))
+    this.storage.set(this.STORAGE_KEY, JSON.stringify(value))
   }
 
   public getAppStorage(): AppState {
-    const value = storage.getString(STORAGE_KEY)
+    const value = this.storage.getString(this.STORAGE_KEY)
     return value ? JSON.parse(value) : {}
   }
 
   public clearAppStorage() {
-    storage.clearAll()
+    this.storage.clearAll()
   }
 }
 
