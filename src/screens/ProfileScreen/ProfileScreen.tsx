@@ -1,10 +1,14 @@
-import {View} from "react-native"
+import {Alert, View} from "react-native"
+import RNRestart from "react-native-restart"
 
 // components
 import {MenuOption} from "@strongr/components/MenuOption/MenuOption"
 
 // constants
 import {COLORS} from "@strongr/constants/colors"
+
+// storage
+import {Storage} from "@strongr/store/storage"
 
 // types
 import type {NavigationProp} from "@react-navigation/native"
@@ -15,13 +19,14 @@ interface Props {
 }
 
 export const ProfileScreen = ({navigation}: Props) => {
+  const DEV = process.env.NODE_ENV === "development"
+
   const onOptionPress = (screen: string) => {
     navigation.navigate(NAVIGATORS.PROFILE_NAVIGATOR, {screen})
   }
 
   const menuOptions = [
     {
-      disabled: true,
       label: "Edit Profile",
       onPress: () => {
         onOptionPress(SCREEN_NAMES.EDIT_PROFILE)
@@ -41,6 +46,21 @@ export const ProfileScreen = ({navigation}: Props) => {
     }
   ]
 
+  const onResetAppStoragePress = () => {
+    Alert.alert("Do you want to reset the app storage?", "", [
+      {
+        text: "Cancel"
+      },
+      {
+        text: "Reset",
+        onPress: () => {
+          Storage.clearAppStorage()
+          RNRestart.restart()
+        }
+      }
+    ])
+  }
+
   return (
     <View
       style={{
@@ -51,6 +71,12 @@ export const ProfileScreen = ({navigation}: Props) => {
         {menuOptions.map((option) => (
           <MenuOption key={option.label} {...option} />
         ))}
+        {DEV ? (
+          <MenuOption
+            label="Reset App Storage"
+            onPress={onResetAppStoragePress}
+          />
+        ) : null}
         <MenuOption
           disabled
           label="Sign Out"

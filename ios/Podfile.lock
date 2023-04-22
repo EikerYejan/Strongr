@@ -324,6 +324,8 @@ PODS:
   - react-native-mmkv (2.8.0):
     - MMKV (>= 1.2.13)
     - React-Core
+  - react-native-restart (0.0.27):
+    - React-Core
   - react-native-safe-area-context (4.4.1):
     - RCT-Folly
     - RCTRequired
@@ -444,6 +446,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
+  - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -543,6 +546,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
+  react-native-restart:
+    :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -619,6 +624,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 5e5497c844f2381e8648ec3a7d0ad25b3f27f23e
   React-logger: b277ad8f4473f2506fb30b762b6348534a3de10e
   react-native-mmkv: 7da5e18e55c04a9af9a7e0ab9792a1e8d33765a1
+  react-native-restart: 7595693413fe3ca15893702f2c8306c62a708162
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
   React-perflogger: e9249a18e055cae96fdf685bf6145cbea62506c8
   React-RCTActionSheet: a6d2a544a4605a111ce80fa9319cc870ca3ea778

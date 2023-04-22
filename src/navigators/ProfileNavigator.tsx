@@ -5,6 +5,7 @@ import {ProfileScreen} from "@strongr/screens/ProfileScreen/ProfileScreen"
 import {PrivacyPolicyScreen} from "@strongr/screens/PrivacyPolicyScreen/PrivacyPolicyScreen"
 import {SettingsScreen} from "@strongr/screens/SettingsScreen/SettingsScreen"
 import {SettingsContent} from "@strongr/components/SettingsContent/SettingsContent"
+import {EditProfileScreen} from "@strongr/screens/EditProfileScreen/EditProfileScreen"
 
 // constants
 import {SCREEN_NAMES} from "@strongr/constants/screens"
@@ -13,6 +14,7 @@ import {SCREEN_NAMES} from "@strongr/constants/screens"
 import type {SettingsContentType} from "@strongr/constants/screens"
 
 const Stack = createStackNavigator<{
+  [SCREEN_NAMES.EDIT_PROFILE]: never
   [SCREEN_NAMES.PROFILE]: never
   [SCREEN_NAMES.PRIVACY]: never
   [SCREEN_NAMES.SETTINGS]: never
@@ -51,6 +53,10 @@ export const ProfileNavigator = () => {
           <SettingsContent contentType={route.params?.contentType} />
         )}
       </Stack.Screen>
+      <Stack.Screen
+        component={EditProfileScreen}
+        name={SCREEN_NAMES.EDIT_PROFILE}
+      />
     </Stack.Navigator>
   )
 }

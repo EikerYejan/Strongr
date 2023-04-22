@@ -12,7 +12,8 @@ export type AppState = typeof defaultAppState
 
 export const defaultAppState = {
   user: {
-    name: undefined as string | undefined,
+    name: "Stranger",
+    email: undefined as string | undefined,
     settings: {
       measureUnit: "metric",
       enableWorkoutReminders: true,

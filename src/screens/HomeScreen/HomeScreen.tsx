@@ -24,7 +24,7 @@ export const HomeScreen = () => {
   const {
     appState: {user}
   } = useAppState()
-  const {name: userName = "Stranger"} = user || {}
+  const {name: userName} = user || {}
 
   const modalWorkoutData = useMemo<ModalData | null>(() => {
     // search for Id here
