@@ -5,6 +5,10 @@ import {useState, useCallback} from "react"
 import {useFonts} from "expo-font"
 import * as SplashScreenApi from "expo-splash-screen"
 
+// store
+import {Storage} from "@strongr/store/storage"
+import {defaultAppState} from "@strongr/store/store"
+
 // styles
 import {splashScreenStyles} from "./styles"
 
@@ -32,6 +36,14 @@ export const SplashScreen = ({children}: Props) => {
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreenApi.hideAsync()
+
+      // TODO: move this to the onboarding screen
+      const storedData = Storage.getAppStorage()
+
+      if (!Object.keys(storedData).length) {
+        Storage.updateAppStorage(defaultAppState)
+      }
+
       setCanRender(true)
     }
   }, [fontsLoaded])

@@ -8,9 +8,9 @@ import {Storage} from "./storage"
 // types
 import type {DeepPartial} from "@strongr/types/helpers"
 
-export type AppState = typeof defaultState
+export type AppState = typeof defaultAppState
 
-export const defaultState = {
+export const defaultAppState = {
   user: {
     name: undefined as string | undefined,
     settings: {
