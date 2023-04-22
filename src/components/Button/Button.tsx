@@ -37,6 +37,7 @@ export interface ButtonProps
 }
 
 export const Button = ({
+  disabled,
   leftIconName,
   loading = false,
   onPress,
@@ -55,7 +56,12 @@ export const Button = ({
 
   return (
     <TouchableOpacity
-      style={[styles.button, style]}
+      disabled={disabled ?? loading}
+      style={[
+        styles.button,
+        disabled ? {backgroundColor: COLORS.GRAY} : {},
+        style
+      ]}
       onPress={onPress}
       {...props}
     >
