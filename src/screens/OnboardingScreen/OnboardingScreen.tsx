@@ -1,5 +1,5 @@
-import {Text, View} from "react-native"
-import {useCallback, useEffect, useMemo} from "react"
+import {Animated, Text, View} from "react-native"
+import {useCallback, useEffect, useMemo, useRef} from "react"
 import {Picker} from "@react-native-picker/picker"
 
 // components
@@ -19,6 +19,30 @@ import {useAppState} from "@strongr/store/store"
 // TODO: implement transitions between steps
 
 export const OnboardingScreen = () => {
+  const fadeAnim = useRef(new Animated.Value(0)).current
+
+  const fadeIn = useCallback(
+    (cb?: () => void) => {
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: true
+      }).start(cb)
+    },
+    [fadeAnim]
+  )
+
+  const fadeOut = useCallback(
+    (cb?: () => void) => {
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true
+      }).start(cb)
+    },
+    [fadeAnim]
+  )
+
   const {
     appState: {lastOnboardingStep = 1, user},
     updateAppState
@@ -33,15 +57,19 @@ export const OnboardingScreen = () => {
   )
 
   const onNextStep = () => {
-    updateAppState({
-      lastOnboardingStep: lastOnboardingStep + 1,
-      onboardingCompleted: isCompleted
+    fadeOut(() => {
+      updateAppState({
+        lastOnboardingStep: lastOnboardingStep + 1,
+        onboardingCompleted: isCompleted
+      })
     })
   }
 
   const onBack = () => {
-    updateAppState({
-      lastOnboardingStep: lastOnboardingStep - 1
+    fadeOut(() => {
+      updateAppState({
+        lastOnboardingStep: lastOnboardingStep - 1
+      })
     })
   }
 
@@ -78,28 +106,32 @@ export const OnboardingScreen = () => {
   }, [onSelectionChange, pickerOptions, pickerOptionLabel, type, user])
 
   useEffect(() => {
+    fadeIn()
+
     const hasStoredValue = user[type] !== undefined
 
     if (!hasStoredValue) onSelectionChange(pickerOptions[0])
-  }, [onSelectionChange, pickerOptions, type, user])
+  }, [fadeIn, onSelectionChange, pickerOptions, type, user])
 
   return (
     <ScreenWrapper>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
-      <View style={styles.selectionWrapper}>{renderContent()}</View>
-      <View style={styles.bottomBar}>
-        {lastOnboardingStep > 1 ? (
-          <BackButton arrowDirection="left" onPress={onBack} />
-        ) : null}
-        <Button
-          rightIconName="ArrowRight"
-          size="small"
-          style={styles.nextButton}
-          title={isCompleted ? "Start" : "Next"}
-          onPress={onNextStep}
-        />
-      </View>
+      <Animated.View style={[{height: "100%"}, {opacity: fadeAnim}]}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+        <View style={styles.selectionWrapper}>{renderContent()}</View>
+        <View style={styles.bottomBar}>
+          {lastOnboardingStep > 1 ? (
+            <BackButton arrowDirection="left" onPress={onBack} />
+          ) : null}
+          <Button
+            rightIconName="ArrowRight"
+            size="small"
+            style={styles.nextButton}
+            title={isCompleted ? "Start" : "Next"}
+            onPress={onNextStep}
+          />
+        </View>
+      </Animated.View>
     </ScreenWrapper>
   )
 }
