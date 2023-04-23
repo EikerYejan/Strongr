@@ -6,9 +6,13 @@ interface Props {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 32
+    padding: 32,
+    height: "100%"
   },
-  content: {}
+  content: {
+    position: "relative",
+    height: "100%"
+  }
 })
 
 export const ScreenWrapper = ({children}: Props) => {

@@ -12,10 +12,11 @@ export const SCREEN_NAMES = {
   EXERCISES: "Exercises",
   HOME: "Home",
   LOGIN: "Login",
+  ONBOARDING: "Onboarding",
   PRIVACY: "Privacy",
   PROFILE: "Profile",
-  SETTINGS: "Settings",
   SETTINGS_CONTENT: "SettingsContent",
+  SETTINGS: "Settings",
   SPLASH: "Splash",
   STATS: "Stats"
 } as const

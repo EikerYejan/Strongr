@@ -1,11 +1,19 @@
 export interface AppState {
+  lastOnboardingStep: number
+  onboardingCompleted: boolean
   user: {
-    name: string
+    activityLevel?: string
+    age?: number
     email: string | undefined
+    gender?: string
+    goal?: string
+    height?: number
+    name: string
+    weight?: number
     settings: {
-      measureUnit: "metric" | "imperial"
-      enableWorkoutReminders: boolean
       enableProgramNotifications: boolean
+      enableWorkoutReminders: boolean
+      measureUnit: "metric" | "imperial"
     }
   }
 }

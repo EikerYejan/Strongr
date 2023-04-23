@@ -1,15 +1,17 @@
 import {Text, View} from "react-native"
 import {useState, useCallback} from "react"
-
-// utils
 import {useFonts} from "expo-font"
 import * as SplashScreenApi from "expo-splash-screen"
 
-// store
-import {Storage} from "@strongr/store/storage"
+// components
+import {OnboardingScreen} from "../OnboardingScreen/OnboardingScreen"
 
 // styles
 import {splashScreenStyles} from "./styles"
+
+// utils
+import {Storage} from "@strongr/store/storage"
+import {useAppState} from "@strongr/store/store"
 
 interface Props {
   children: JSX.Element
@@ -19,6 +21,10 @@ void SplashScreenApi.preventAutoHideAsync()
 
 export const SplashScreen = ({children}: Props) => {
   const [canRender, setCanRender] = useState(false)
+
+  const {
+    appState: {onboardingCompleted}
+  } = useAppState()
 
   const [fontsLoaded] = useFonts({
     "Inter-Black": require("../../../assets/fonts/Inter-Black.ttf"),
@@ -36,7 +42,6 @@ export const SplashScreen = ({children}: Props) => {
     if (fontsLoaded) {
       await SplashScreenApi.hideAsync()
 
-      // TODO: move this to the onboarding screen
       Storage.init()
 
       setCanRender(true)
@@ -48,6 +53,10 @@ export const SplashScreen = ({children}: Props) => {
   }
 
   if (canRender) {
+    if (!onboardingCompleted) {
+      return <OnboardingScreen />
+    }
+
     return children
   }
 

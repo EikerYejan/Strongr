@@ -3,14 +3,16 @@ import {MMKV} from "react-native-mmkv"
 // types
 import type {AppState} from "@strongr/types"
 
-const defaultAppState: AppState = {
+export const defaultAppState: AppState = {
+  lastOnboardingStep: 1,
+  onboardingCompleted: false,
   user: {
-    name: "Stranger",
     email: undefined as string | undefined,
+    name: "Stranger",
     settings: {
-      measureUnit: "metric",
+      enableProgramNotifications: false,
       enableWorkoutReminders: true,
-      enableProgramNotifications: false
+      measureUnit: "metric"
     }
   }
 }

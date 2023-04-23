@@ -3,7 +3,7 @@ import {atom, selector, useRecoilState} from "recoil"
 import merge from "ts-deepmerge"
 
 // storage
-import {Storage} from "./storage"
+import {Storage, defaultAppState} from "./storage"
 
 // types
 import type {AppState, DeepPartial} from "@strongr/types"
@@ -11,7 +11,7 @@ import type {AppState, DeepPartial} from "@strongr/types"
 const storedState = Storage.getAppStorage()
 
 const appStateAtom = atom({
-  default: storedState,
+  default: Object.keys(storedState).length ? storedState : defaultAppState,
   key: "appState"
 })
 
