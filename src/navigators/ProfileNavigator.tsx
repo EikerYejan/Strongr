@@ -6,6 +6,7 @@ import {PrivacyPolicyScreen} from "@strongr/screens/PrivacyPolicyScreen/PrivacyP
 import {SettingsScreen} from "@strongr/screens/SettingsScreen/SettingsScreen"
 import {SettingsContent} from "@strongr/components/SettingsContent/SettingsContent"
 import {EditProfileScreen} from "@strongr/screens/EditProfileScreen/EditProfileScreen"
+import {BackButton} from "@strongr/components/BackButton/BackButton"
 
 // constants
 import {SCREEN_NAMES} from "@strongr/constants/screens"
@@ -28,6 +29,13 @@ export const ProfileNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerBackTitle: "",
+        headerLeft: (props) => (
+          <BackButton {...props} arrowDirection="left" height={32} width={32} />
+        ),
+        headerLeftContainerStyle: {
+          paddingLeft: 32,
+          paddingTop: 32
+        },
         presentation: "modal",
         title: ""
       }}

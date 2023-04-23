@@ -11,6 +11,8 @@ import type {TouchableOpacityProps} from "react-native"
 
 interface Props extends TouchableOpacityProps {
   arrowDirection: "left" | "right"
+  height?: number
+  width?: number
 }
 
 const styles = StyleSheet.create({
@@ -26,9 +28,17 @@ const styles = StyleSheet.create({
   }
 })
 
-export const BackButton = ({arrowDirection, style, ...props}: Props) => {
+export const BackButton = ({
+  arrowDirection,
+  height,
+  style,
+  width,
+  ...props
+}: Props) => {
+  const customStyles = width && height ? {height, width} : {}
+
   return (
-    <TouchableOpacity style={[styles.button, style]} {...props}>
+    <TouchableOpacity style={[styles.button, style, customStyles]} {...props}>
       <Icon
         fill={COLORS.WHITE}
         name={arrowDirection === "left" ? "ArrowLeft" : "ArrowRight"}
