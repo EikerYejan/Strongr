@@ -20,10 +20,12 @@ interface Props {
 }
 
 export const AuthScreen = ({navigation}: Props) => {
-  const [activeTab, setActiveTab] = useState<"login" | "signup">("login")
-
   const {appState, updateAppState} = useAppState()
-  const {name} = appState.user
+  const {name, email} = appState.user
+
+  const [activeTab, setActiveTab] = useState<"login" | "signup">(
+    !email ? "signup" : "login"
+  )
 
   const fadeAnim = useRef(new Animated.Value(0)).current
 
@@ -56,8 +58,8 @@ export const AuthScreen = ({navigation}: Props) => {
     })
   }
 
-  const onSubmit = () => {
-    updateAppState({hasAuth: true})
+  const onSubmit = (payload?: Record<string, unknown>) => {
+    updateAppState({hasAuth: true, user: payload ?? {}})
     navigation.replace(NAVIGATORS.TABS_NAVIGATOR)
   }
 

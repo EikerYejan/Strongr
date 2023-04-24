@@ -1,3 +1,5 @@
+import {useState} from "react"
+
 // components
 import {AuthForm} from "./AuthForm"
 
@@ -5,12 +7,19 @@ import {AuthForm} from "./AuthForm"
 import {SIGNUP_FORM_BACKGROUND} from "../constants"
 
 interface Props {
-  onSubmit: () => void
+  onSubmit: (payload: Record<string, unknown>) => void
 }
 
+// TODO: password input
+
 export const SignupForm = ({onSubmit}: Props) => {
+  const [fields, setFields] = useState({})
+
   const onInputChange = (field: string) => (value: string) => {
-    console.log(field, value)
+    setFields({
+      ...fields,
+      [field]: field === "email" ? value.toLowerCase() : value
+    })
   }
 
   return (
@@ -21,6 +30,11 @@ export const SignupForm = ({onSubmit}: Props) => {
       headingAccent="newbie,"
       description="Enter your informations below or login with a other account"
       inputs={[
+        {
+          name: "name",
+          onChangeText: onInputChange("name"),
+          placeholder: "Name"
+        },
         {
           name: "email",
           onChangeText: onInputChange("email"),
@@ -37,7 +51,9 @@ export const SignupForm = ({onSubmit}: Props) => {
           placeholder: "Confirm Password"
         }
       ]}
-      onSubmit={onSubmit}
+      onSubmit={() => {
+        onSubmit(fields)
+      }}
     />
   )
 }

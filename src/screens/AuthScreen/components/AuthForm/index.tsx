@@ -1,4 +1,4 @@
-import {Image, Text, View} from "react-native"
+import {Image, ScrollView, Text, View} from "react-native"
 
 // components
 import {TextInput} from "@strongr/components/TextInput/TextInput"
@@ -45,20 +45,22 @@ export const AuthForm = ({
       </View>
       <View style={styles.bottomContainer}>
         <View style={styles.bottomContainerBackground} />
-        {inputs.map(({name, onChangeText, placeholder}) => (
-          <TextInput
-            key={name}
-            placeholder={placeholder}
-            style={styles.input}
-            onChangeText={onChangeText}
+        <ScrollView persistentScrollbar>
+          {inputs.map(({name, onChangeText, placeholder}) => (
+            <TextInput
+              key={name}
+              placeholder={placeholder}
+              style={styles.input}
+              onChangeText={onChangeText}
+            />
+          ))}
+          <Button
+            rightIconName="ArrowRight"
+            style={styles.submitButton}
+            title={buttonText}
+            onPress={onSubmit}
           />
-        ))}
-        <Button
-          rightIconName="ArrowRight"
-          style={styles.submitButton}
-          title={buttonText}
-          onPress={onSubmit}
-        />
+        </ScrollView>
       </View>
     </View>
   )
