@@ -2,10 +2,11 @@ import {StyleSheet} from "react-native"
 
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
+import {themedColor} from "@strongr/utils/theme"
 
 export const smallCardStyles = StyleSheet.create({
   wrapper: {
-    backgroundColor: COLORS.DARK_2,
+    backgroundColor: themedColor(COLORS.DARK_2, COLORS.BLACK),
     borderRadius: 16,
     flexDirection: "row",
     height: 90,

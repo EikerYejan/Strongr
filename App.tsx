@@ -18,21 +18,26 @@ import {SplashScreen} from "./src/screens/SplashScreen/SplashScreen"
 // types
 import type {Theme} from "@react-navigation/native"
 
+// utils
+import {getColorScheme, themedColor} from "@strongr/utils/theme"
+
+const appearance = getColorScheme()
+
 const safeAreaViewStyles = {
-  backgroundColor: COLORS.DARK_1,
+  backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
   height: "100%"
 }
 
 const navigationTheme: Theme = {
   colors: {
-    background: COLORS.DARK_1,
+    background: themedColor(COLORS.DARK_1, COLORS.WHITE),
     border: COLORS.TRANSPARENT,
-    card: COLORS.DARK_1,
+    card: COLORS.DARK_3,
     notification: COLORS.PRIMARY,
     primary: COLORS.PRIMARY,
     text: COLORS.WHITE
   },
-  dark: true
+  dark: appearance === "dark"
 }
 
 const queryClient = new QueryClient()
@@ -40,7 +45,9 @@ const queryClient = new QueryClient()
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar
+        barStyle={appearance === "light" ? "dark-content" : "light-content"}
+      />
       <SafeAreaView style={safeAreaViewStyles}>
         <QueryClientProvider client={queryClient}>
           <RecoilRoot>

@@ -13,6 +13,8 @@ import {SCREEN_NAMES} from "@strongr/constants/screens"
 
 // types
 import type {SettingsContentType} from "@strongr/constants/screens"
+import {COLORS} from "@strongr/constants/colors"
+import {themedColor, themedProp} from "@strongr/utils/theme"
 
 const Stack = createStackNavigator<{
   [SCREEN_NAMES.EDIT_PROFILE]: never
@@ -34,7 +36,15 @@ export const ProfileNavigator = () => {
         ),
         headerLeftContainerStyle: {
           paddingLeft: 32,
-          paddingTop: 32
+          paddingTop: themedProp(32, 2)
+        },
+        headerStyle: {
+          backgroundColor: themedColor(COLORS.DARK_1, COLORS.PRIMARY)
+        },
+        headerTitleStyle: {
+          color: COLORS.WHITE,
+          marginLeft: "auto",
+          marginRight: 40
         },
         presentation: "modal",
         title: ""

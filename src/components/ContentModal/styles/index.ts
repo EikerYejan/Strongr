@@ -2,12 +2,13 @@ import {StyleSheet, Dimensions} from "react-native"
 
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
+import {themedColor} from "@strongr/utils/theme"
 
 const {width: vw} = Dimensions.get("screen")
 
 export const workoutModalContentStyles = StyleSheet.create({
   contentContainer: {
-    backgroundColor: COLORS.DARK_1,
+    backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     paddingHorizontal: 24,
@@ -31,7 +32,7 @@ export const workoutModalContentStyles = StyleSheet.create({
   image: {
     width: "100%",
     height: 338,
-    backgroundColor: COLORS.DARK_1
+    backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE)
   },
   scrollView: {
     flex: 1
@@ -44,7 +45,7 @@ export const workoutModalContentStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     fontFamily: FONTS.INTER_SEMIBOLD,
-    color: COLORS.WHITE
+    color: themedColor(COLORS.WHITE, COLORS.BLACK)
   },
   workoutExcerpt: {
     color: COLORS.PRIMARY,
@@ -65,7 +66,7 @@ export const workoutModalContentStyles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "400",
     fontFamily: FONTS.INTER_REGULAR,
-    color: COLORS.SOFT,
+    color: themedColor(COLORS.SOFT, COLORS.DARK_1),
     marginBottom: 16
   },
   workoutDescriptionWrapper: {
@@ -75,7 +76,7 @@ export const workoutModalContentStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     fontFamily: FONTS.INTER_SEMIBOLD,
-    color: COLORS.WHITE,
+    color: themedColor(COLORS.WHITE, COLORS.PRIMARY),
     marginBottom: 32
   },
   workoutStartButtonWrapper: {

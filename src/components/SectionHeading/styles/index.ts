@@ -3,6 +3,8 @@ import {StyleSheet} from "react-native"
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
 
+import {themedColor} from "@strongr/utils/theme"
+
 export const sectionHeadingStyles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
@@ -14,7 +16,7 @@ export const sectionHeadingStyles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "500",
     fontFamily: FONTS.INTER_REGULAR,
-    color: COLORS.WHITE
+    color: themedColor(COLORS.WHITE, COLORS.BLACK)
   },
   rightText: {
     fontSize: 14,

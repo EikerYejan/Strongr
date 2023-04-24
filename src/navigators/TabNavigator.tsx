@@ -17,6 +17,9 @@ import {ExercisesScreen} from "@strongr/screens/ExercisesScreen/ExercisesScreen"
 import type {BottomTabNavigationOptions} from "@react-navigation/bottom-tabs"
 import type {NavigationProp} from "@react-navigation/native"
 
+// utils
+import {themedColor} from "@strongr/utils/theme"
+
 interface Props {
   navigation: NavigationProp<Record<string, unknown>>
 }
@@ -28,7 +31,7 @@ const defaultScreenOptions: BottomTabNavigationOptions = {
   tabBarLabel: () => null,
   tabBarStyle: {
     alignItems: "center",
-    backgroundColor: COLORS.DARK_1,
+    backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
     borderColor: COLORS.TRANSPARENT,
     height: 70,
     justifyContent: "center"

@@ -1,6 +1,7 @@
 import {StyleSheet} from "react-native"
 
 import {COLORS} from "@strongr/constants/colors"
+import {themedColor} from "@strongr/utils/theme"
 
 export const searchInputStyles = StyleSheet.create({
   container: {
@@ -19,7 +20,7 @@ export const searchInputStyles = StyleSheet.create({
   },
   clearIconContainer: {
     alignItems: "center",
-    backgroundColor: COLORS.SOFT,
+    backgroundColor: themedColor(COLORS.SOFT, COLORS.BLACK),
     borderRadius: 6,
     height: 24,
     justifyContent: "center",

@@ -13,6 +13,9 @@ import {tabNavigationButtonStyles} from "./styles"
 // types
 import type {IconName} from "@strongr/components/Icons/Icons"
 
+// utils
+import {themedColor} from "@strongr/utils/theme"
+
 type TabNavigationButtonProps = TouchableOpacityProps & {
   focused?: boolean
   iconName: IconName
@@ -23,7 +26,7 @@ export const TabNavigationButton = ({
   iconName,
   ...props
 }: TabNavigationButtonProps) => {
-  const fill = focused ? COLORS.WHITE : COLORS.GRAY
+  const fill = focused ? themedColor(COLORS.WHITE, COLORS.PRIMARY) : COLORS.GRAY
 
   return (
     <View {...props} style={tabNavigationButtonStyles.container}>

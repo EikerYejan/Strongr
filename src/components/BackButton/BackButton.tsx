@@ -9,6 +9,9 @@ import {COLORS} from "@strongr/constants/colors"
 // types
 import type {TouchableOpacityProps} from "react-native"
 
+// utils
+import {themedColor} from "@strongr/utils/theme"
+
 interface Props extends TouchableOpacityProps {
   arrowDirection: "left" | "right"
   height?: number
@@ -18,13 +21,15 @@ interface Props extends TouchableOpacityProps {
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    backgroundColor: COLORS.DARK_3,
+    backgroundColor: themedColor(COLORS.DARK_3, COLORS.TRANSPARENT),
     borderRadius: 54,
     flexDirection: "row",
     height: 54,
     justifyContent: "center",
     paddingRight: 2,
-    width: 54
+    width: 54,
+    borderWidth: 1.5,
+    borderColor: themedColor(COLORS.TRANSPARENT, COLORS.WHITE)
   }
 })
 

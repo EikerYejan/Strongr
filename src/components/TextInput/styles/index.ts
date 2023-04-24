@@ -2,11 +2,12 @@ import {StyleSheet} from "react-native"
 
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
+import {themedColor} from "@strongr/utils/theme"
 
 export const textInputStyles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: COLORS.DARK_2,
+    backgroundColor: themedColor(COLORS.DARK_2, COLORS.BLACK),
     borderRadius: 10,
     flexDirection: "row",
     height: 45,
