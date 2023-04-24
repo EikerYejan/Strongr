@@ -8,7 +8,7 @@ export const menuOptionStyles = StyleSheet.create({
   },
   container: {
     alignItems: "center",
-    borderBottomColor: COLORS.DARK_2,
+    borderColor: COLORS.DARK_2,
     borderBottomWidth: 1,
     flexDirection: "row",
     height: 60,

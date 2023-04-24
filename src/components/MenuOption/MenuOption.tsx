@@ -12,7 +12,7 @@ import {COLORS} from "@strongr/constants/colors"
 import {menuOptionStyles as styles} from "./styles"
 
 // types
-import type {TextStyle} from "react-native"
+import type {TextStyle, ViewStyle} from "react-native"
 
 interface Props {
   checked?: boolean
@@ -23,6 +23,7 @@ interface Props {
   onCheck?: (value: boolean) => void
   onPress?: () => void
   showIcon?: boolean
+  style?: ViewStyle
 }
 
 export const MenuOption = ({
@@ -33,7 +34,8 @@ export const MenuOption = ({
   labelStyles,
   onCheck,
   onPress,
-  showIcon = true
+  showIcon = true,
+  style
 }: Props) => {
   const renderIcon = useCallback(() => {
     if (!showIcon) return null
@@ -73,7 +75,7 @@ export const MenuOption = ({
   return (
     <TouchableOpacity
       disabled={disabled}
-      style={[styles.container, disabled ? styles.disabled : {}]}
+      style={[styles.container, disabled ? styles.disabled : {}, style]}
       onPress={onPress}
     >
       <Text style={[styles.label, labelStyles]}>{label}</Text>

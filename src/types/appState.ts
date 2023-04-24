@@ -1,4 +1,5 @@
 export interface AppState {
+  hasAuth: boolean
   lastOnboardingStep: number
   onboardingCompleted: boolean
   user: {

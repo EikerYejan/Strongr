@@ -15,11 +15,16 @@ import {Storage} from "@strongr/store/storage"
 // types
 import type {NavigationProp} from "@react-navigation/native"
 
+// utils
+import {useAppState} from "@strongr/store/store"
+
 interface Props {
   navigation: NavigationProp<Record<string, unknown>>
 }
 
 export const ProfileScreen = ({navigation}: Props) => {
+  const {updateAppState} = useAppState()
+
   const onOptionPress = (screen: string) => {
     navigation.navigate(NAVIGATORS.PROFILE_NAVIGATOR, {screen})
   }
@@ -68,13 +73,23 @@ export const ProfileScreen = ({navigation}: Props) => {
       }
     },
     {
-      disabled: true,
       label: "Sign Out",
       labelStyles: {
         color: COLORS.ERROR,
         fontSize: 17
       },
-      showIcon: false
+      showIcon: false,
+      style: {
+        borderTopWidth: 1,
+        marginTop: "auto"
+      },
+      onPress: () => {
+        updateAppState({hasAuth: false})
+        navigation.reset({
+          index: 1,
+          routes: [{name: NAVIGATORS.AUTH}]
+        })
+      }
     }
   ]
 

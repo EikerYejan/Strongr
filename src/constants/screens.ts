@@ -8,6 +8,7 @@ interface ScreenConfig {
 }
 
 export const SCREEN_NAMES = {
+  AUTH: "AUTH",
   EDIT_PROFILE: "EditProfile",
   EXERCISES: "Exercises",
   HOME: "Home",
@@ -22,6 +23,7 @@ export const SCREEN_NAMES = {
 } as const
 
 export const NAVIGATORS = {
+  AUTH: "AuthNavigator",
   PROFILE_NAVIGATOR: "ProfileNavigator",
   TABS_NAVIGATOR: "TabsNavigator"
 } as const
