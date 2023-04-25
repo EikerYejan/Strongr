@@ -10,21 +10,34 @@ import {COLORS} from "@strongr/constants/colors"
 import {textInputStyles as styles} from "./styles"
 
 // types
-import type {TextInputProps} from "react-native"
+import type {TextStyle, TextInputProps} from "react-native"
 import type {IconName} from "../Icons/Icons"
 
 interface Props extends TextInputProps {
   iconName?: IconName
   inputRef?: React.RefObject<NativeInput>
+  inputStyles?: TextStyle
 }
 
-export const TextInput = ({style, iconName, inputRef, ...props}: Props) => {
+export const TextInput = ({
+  iconName,
+  inputRef,
+  inputStyles,
+  placeholderTextColor,
+  style,
+  ...props
+}: Props) => {
   return (
     <View style={[styles.container, style]}>
       {iconName ? (
-        <Icon width={22} height={22} fill={COLORS.GRAY} name={iconName} />
+        <Icon width={22} height={22} fill={COLORS.WHITE} name={iconName} />
       ) : null}
-      <NativeInput ref={inputRef} style={styles.input} {...props} />
+      <NativeInput
+        placeholderTextColor={placeholderTextColor ?? COLORS.WHITE}
+        ref={inputRef}
+        style={[styles.input, inputStyles]}
+        {...props}
+      />
     </View>
   )
 }

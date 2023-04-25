@@ -2,6 +2,7 @@ import {Dimensions, StyleSheet} from "react-native"
 
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
+import {themedColor} from "@strongr/utils/theme"
 
 const {height: vh, width: vw} = Dimensions.get("screen")
 
@@ -25,7 +26,7 @@ export const authForm = StyleSheet.create({
     zIndex: 1
   },
   bottomContainerBackground: {
-    backgroundColor: COLORS.DARK_1,
+    backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
     height: bottomSectionHeight,
     left: 0,
     position: "absolute",
@@ -62,6 +63,9 @@ export const authForm = StyleSheet.create({
     marginBottom: 40,
     paddingBottom: 25,
     paddingLeft: 0
+  },
+  inputBox: {
+    color: themedColor(COLORS.WHITE, COLORS.BLACK)
   },
   submitButton: {
     marginLeft: "auto",

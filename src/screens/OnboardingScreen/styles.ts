@@ -2,6 +2,7 @@ import {StyleSheet} from "react-native"
 
 import {FONTS} from "@strongr/constants/fonts"
 import {COLORS} from "@strongr/constants/colors"
+import {themedColor} from "@strongr/utils/theme"
 
 export const onboardingScreenStyles = StyleSheet.create({
   bottomBar: {
@@ -14,14 +15,14 @@ export const onboardingScreenStyles = StyleSheet.create({
     width: 110
   },
   description: {
-    color: COLORS.SOFT,
+    color: themedColor(COLORS.SOFT, COLORS.DARK_3),
     fontFamily: FONTS.INTER_REGULAR,
     fontSize: 13,
     fontWeight: "400",
     textAlign: "center"
   },
   title: {
-    color: COLORS.WHITE,
+    color: themedColor(COLORS.WHITE, COLORS.BLACK),
     fontFamily: FONTS.INTER_SEMIBOLD,
     fontSize: 28,
     fontWeight: "600",
@@ -32,7 +33,7 @@ export const onboardingScreenStyles = StyleSheet.create({
     height: "100%"
   },
   pickerOption: {
-    color: COLORS.WHITE,
+    color: themedColor(COLORS.WHITE, COLORS.PRIMARY),
     fontFamily: FONTS.INTER_SEMIBOLD,
     fontWeight: "600"
   },

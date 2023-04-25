@@ -14,7 +14,7 @@ export default {
     version,
     orientation: "portrait",
     icon: "./assets/icon.png",
-    userInterfaceStyle: "dark",
+    userInterfaceStyle: "automatic",
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",

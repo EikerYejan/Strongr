@@ -4,8 +4,14 @@ import {Image, ScrollView, Text, View} from "react-native"
 import {TextInput} from "@strongr/components/TextInput/TextInput"
 import {Button} from "@strongr/components/Button/Button"
 
+// constants
+import {COLORS} from "@strongr/constants/colors"
+
 // styles
 import {authForm as styles} from "./styles"
+
+// utils
+import {themedColor} from "@strongr/utils/theme"
 
 interface Input {
   name: string
@@ -48,8 +54,10 @@ export const AuthForm = ({
         <ScrollView persistentScrollbar>
           {inputs.map(({name, onChangeText, placeholder}) => (
             <TextInput
+              inputStyles={styles.inputBox}
               key={name}
               placeholder={placeholder}
+              placeholderTextColor={themedColor(COLORS.WHITE, COLORS.BLACK)}
               style={styles.input}
               onChangeText={onChangeText}
             />

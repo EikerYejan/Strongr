@@ -6,7 +6,6 @@ import type {TextStyle, ViewStyle} from "react-native"
 type Styles = Record<string, ViewStyle | TextStyle>
 
 export const getColorScheme = () => {
-  // return "light"
   return Appearance.getColorScheme() ?? "dark"
 }
 

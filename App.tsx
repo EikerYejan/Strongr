@@ -15,36 +15,33 @@ import {NavigationContainer} from "@react-navigation/native"
 // screens
 import {SplashScreen} from "./src/screens/SplashScreen/SplashScreen"
 
-// types
-import type {Theme} from "@react-navigation/native"
-
 // utils
 import {getColorScheme, themedColor} from "@strongr/utils/theme"
-
-const appearance = getColorScheme()
 
 const safeAreaViewStyles = {
   backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
   height: "100%"
 }
 
-const navigationTheme: Theme = {
-  colors: {
-    background: themedColor(COLORS.DARK_1, COLORS.WHITE),
-    border: COLORS.TRANSPARENT,
-    card: COLORS.DARK_3,
-    notification: COLORS.PRIMARY,
-    primary: COLORS.PRIMARY,
-    text: COLORS.WHITE
-  },
-  dark: appearance === "dark"
-}
-
 const queryClient = new QueryClient()
 
 export default function App() {
+  const appearance = getColorScheme()
+
   return (
-    <NavigationContainer theme={navigationTheme}>
+    <NavigationContainer
+      theme={{
+        colors: {
+          background: themedColor(COLORS.DARK_1, COLORS.WHITE),
+          border: COLORS.TRANSPARENT,
+          card: COLORS.DARK_3,
+          notification: COLORS.PRIMARY,
+          primary: COLORS.PRIMARY,
+          text: COLORS.WHITE
+        },
+        dark: appearance === "dark"
+      }}
+    >
       <StatusBar
         barStyle={appearance === "light" ? "dark-content" : "light-content"}
       />
