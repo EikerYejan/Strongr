@@ -66,7 +66,9 @@ export const AuthForm = ({
             rightIconName="ArrowRight"
             style={styles.submitButton}
             title={buttonText}
-            onPress={onSubmit}
+            onPress={() => {
+              onSubmit()
+            }}
           />
         </ScrollView>
       </View>
