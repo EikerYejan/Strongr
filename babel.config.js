@@ -12,7 +12,8 @@ module.exports = function (api) {
             "@strongr": "./src"
           }
         }
-      ]
+      ],
+      "react-native-reanimated/plugin"
     ]
   }
 }

@@ -1,11 +1,12 @@
 import {Animated, Text, View} from "react-native"
-import {useCallback, useEffect, useMemo, useRef} from "react"
+import {useCallback, useEffect, useMemo, useRef, useState} from "react"
 import {Picker} from "@react-native-picker/picker"
 
 // components
 import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
 import {BackButton} from "@strongr/components/BackButton/BackButton"
 import {Button} from "@strongr/components/Button/Button"
+import {OnboardingSlider} from "./components/OnboardingSlider"
 
 // constants
 import {ONBOARDING_STEPS} from "./constants"
@@ -16,9 +17,14 @@ import {onboardingScreenStyles as styles} from "./styles"
 // utils
 import {useAppState} from "@strongr/store/store"
 
-// TODO: implement transitions between steps
-
 export const OnboardingScreen = () => {
+  const {
+    appState: {lastOnboardingStep = 1, user},
+    updateAppState
+  } = useAppState()
+
+  const [showSlider, setShowSlider] = useState(lastOnboardingStep === 1)
+
   const fadeAnim = useRef(new Animated.Value(0)).current
 
   const fadeIn = useCallback(
@@ -42,11 +48,6 @@ export const OnboardingScreen = () => {
     },
     [fadeAnim]
   )
-
-  const {
-    appState: {lastOnboardingStep = 1, user},
-    updateAppState
-  } = useAppState()
 
   const {description, title, type, pickerOptions, pickerOptionLabel} =
     ONBOARDING_STEPS[lastOnboardingStep] || {}
@@ -113,7 +114,13 @@ export const OnboardingScreen = () => {
     if (!hasStoredValue) onSelectionChange(pickerOptions[0])
   }, [fadeIn, onSelectionChange, pickerOptions, type, user])
 
-  return (
+  return showSlider ? (
+    <OnboardingSlider
+      onGetStartedPress={() => {
+        setShowSlider(false)
+      }}
+    />
+  ) : (
     <ScreenWrapper>
       <Animated.View style={[{height: "100%"}, {opacity: fadeAnim}]}>
         <Text style={styles.title}>{title}</Text>
