@@ -22,8 +22,6 @@ interface Slide {
   title: string
 }
 
-// TODO: indicators transition
-
 const slides: Slide[] = [
   {
     imageUrl:
@@ -46,7 +44,7 @@ const slides: Slide[] = [
 ]
 
 export const OnboardingSlider = ({onGetStartedPress}: Props) => {
-  const [activeIndex, setActiveIndex] = useState(1)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const carousel = useRef<ICarouselInstance>(null)
 

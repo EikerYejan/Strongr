@@ -1,5 +1,6 @@
 import {View} from "react-native"
-import Animated from "react-native-reanimated"
+
+import {Indicator} from "./Indicator"
 
 import {indicatorStyles as styles} from "./styles"
 
@@ -26,12 +27,12 @@ export const Indicators = ({
         const isActive = index === activeIndex
 
         return (
-          <Animated.Text
+          <Indicator
+            isActive={isActive}
+            key={index}
             onPress={() => {
               onItemPress(index)
             }}
-            style={[styles.indicator, isActive ? styles.indicatorActive : {}]}
-            key={index}
           />
         )
       })}

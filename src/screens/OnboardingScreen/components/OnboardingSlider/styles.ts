@@ -56,11 +56,9 @@ export const indicatorStyles = StyleSheet.create({
   },
   indicator: {
     height: 4,
-    width: 16,
     backgroundColor: COLORS.SOFT
   },
   indicatorActive: {
-    backgroundColor: COLORS.PRIMARY,
-    width: 36
+    backgroundColor: COLORS.PRIMARY
   }
 })
