@@ -9,6 +9,9 @@ brew link node@18
 
 brew install yarn
 
+# Move to the root of the repository
+cd /Volumes/workspace/repository
+
 # Install dependencies you manage with CocoaPods.
 yarn
 pod install
