@@ -60,9 +60,12 @@ export const EditProfileScreen = ({navigation}: Props) => {
       <View style={styles.optionContainer}>
         <Text style={styles.optionLabel}>Email</Text>
         <TextInput
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="email-address"
+          onChangeText={onChangeField("email")}
           style={styles.textInput}
           value={email}
-          onChangeText={onChangeField("email")}
         />
       </View>
       <Button

@@ -31,21 +31,26 @@ export const SignupForm = ({onSubmit}: Props) => {
       description="Enter your informations below or login with a other account"
       inputs={[
         {
+          autoCorrect: false,
           name: "name",
           onChangeText: onInputChange("name"),
           placeholder: "Name"
         },
         {
+          autoCapitalize: "none",
+          keyboardType: "email-address",
           name: "email",
           onChangeText: onInputChange("email"),
           placeholder: "Email"
         },
         {
+          autoCapitalize: "none",
           name: "password",
           onChangeText: onInputChange("password"),
           placeholder: "Password"
         },
         {
+          autoCapitalize: "none",
           name: "password-confirmation",
           onChangeText: onInputChange("password"),
           placeholder: "Confirm Password"

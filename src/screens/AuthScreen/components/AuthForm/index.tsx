@@ -10,13 +10,14 @@ import {COLORS} from "@strongr/constants/colors"
 // styles
 import {authForm as styles} from "./styles"
 
+// types
+import type {TextInputProps} from "react-native"
+
 // utils
 import {themedColor} from "@strongr/utils/theme"
 
-interface Input {
+interface Input extends TextInputProps {
   name: string
-  onChangeText: (text: string) => void
-  placeholder: string
 }
 
 interface Props {
@@ -52,8 +53,10 @@ export const AuthForm = ({
       <View style={styles.bottomContainer}>
         <View style={styles.bottomContainerBackground} />
         <ScrollView persistentScrollbar>
-          {inputs.map(({name, onChangeText, placeholder}) => (
+          {inputs.map(({name, onChangeText, placeholder, ...inputProps}) => (
             <TextInput
+              {...inputProps}
+              autoCorrect={false}
               inputStyles={styles.inputBox}
               key={name}
               placeholder={placeholder}

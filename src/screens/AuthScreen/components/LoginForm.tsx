@@ -22,11 +22,14 @@ export const LoginForm = ({userName, onSubmit}: Props) => {
       headingAccent={userName}
       inputs={[
         {
+          autoCapitalize: "none",
+          keyboardType: "email-address",
           name: "email",
           onChangeText: onInputChange("email"),
           placeholder: "Email"
         },
         {
+          autoCapitalize: "none",
           name: "password",
           onChangeText: onInputChange("password"),
           placeholder: "Password"
