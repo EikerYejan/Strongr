@@ -13,7 +13,8 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:typescript-sort-keys/recommended"
   ],
   overrides: [],
   parserOptions: {
@@ -23,7 +24,7 @@ module.exports = {
     tsconfigRootDir: __dirname
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "typescript-sort-keys"],
   settings: {
     react: {
       version: "detect"
@@ -40,6 +41,21 @@ module.exports = {
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-return": "off",
-    "@typescript-eslint/no-unsafe-argument": "off"
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "sort-keys": [
+      "error",
+      "asc",
+      {caseSensitive: true, natural: false, minKeys: 2}
+    ],
+    "react/jsx-sort-props": [
+      2,
+      {
+        callbacksLast: true,
+        shorthandFirst: true,
+        shorthandLast: false,
+        ignoreCase: true,
+        noSortAlphabetically: false
+      }
+    ]
   }
 }
