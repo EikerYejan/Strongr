@@ -13,7 +13,7 @@ export const AuthNavigator = () => {
     <Stack.Navigator
       screenOptions={{headerShown: false, presentation: "modal"}}
     >
-      <Stack.Screen name={SCREEN_NAMES.AUTH} component={AuthScreen} />
+      <Stack.Screen component={AuthScreen} name={SCREEN_NAMES.AUTH} />
     </Stack.Navigator>
   )
 }

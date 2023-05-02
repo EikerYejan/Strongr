@@ -4,6 +4,7 @@ import {MMKV} from "react-native-mmkv"
 import type {AppState} from "@strongr/types"
 
 export const defaultAppState: AppState = {
+  hasAuth: false,
   lastOnboardingStep: 1,
   onboardingCompleted: false,
   user: {

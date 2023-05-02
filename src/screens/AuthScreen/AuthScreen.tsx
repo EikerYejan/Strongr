@@ -32,8 +32,8 @@ export const AuthScreen = ({navigation}: Props) => {
   const fadeIn = useCallback(
     (cb?: () => void) => {
       Animated.timing(fadeAnim, {
-        toValue: 1,
         duration: 250,
+        toValue: 1,
         useNativeDriver: true
       }).start(cb)
     },
@@ -43,8 +43,8 @@ export const AuthScreen = ({navigation}: Props) => {
   const fadeOut = useCallback(
     (cb?: () => void) => {
       Animated.timing(fadeAnim, {
-        toValue: 0,
         duration: 250,
+        toValue: 0,
         useNativeDriver: true
       }).start(cb)
     },

@@ -16,8 +16,8 @@ export const SCREEN_NAMES = {
   ONBOARDING: "Onboarding",
   PRIVACY: "Privacy",
   PROFILE: "Profile",
-  SETTINGS_CONTENT: "SettingsContent",
   SETTINGS: "Settings",
+  SETTINGS_CONTENT: "SettingsContent",
   SPLASH: "Splash",
   STATS: "Stats"
 } as const

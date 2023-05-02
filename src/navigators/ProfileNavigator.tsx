@@ -50,17 +50,17 @@ export const ProfileNavigator = () => {
         title: ""
       }}
     >
-      <Stack.Screen name={SCREEN_NAMES.PROFILE} component={ProfileScreen} />
+      <Stack.Screen component={ProfileScreen} name={SCREEN_NAMES.PROFILE} />
       <Stack.Screen
-        name={SCREEN_NAMES.PRIVACY}
         component={PrivacyPolicyScreen}
+        name={SCREEN_NAMES.PRIVACY}
         options={{
           title: "Privacy Policy"
         }}
       />
       <Stack.Screen
-        name={SCREEN_NAMES.SETTINGS}
         component={SettingsScreen}
+        name={SCREEN_NAMES.SETTINGS}
         options={{title: "Settings"}}
       />
       <Stack.Screen

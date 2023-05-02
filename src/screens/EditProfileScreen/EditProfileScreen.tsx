@@ -43,7 +43,7 @@ export const EditProfileScreen = ({navigation}: Props) => {
   }
 
   const onSave = () => {
-    updateAppState({user: {name, email}})
+    updateAppState({user: {email, name}})
     navigation.goBack()
   }
 
@@ -63,9 +63,9 @@ export const EditProfileScreen = ({navigation}: Props) => {
           autoCapitalize="none"
           autoCorrect={false}
           keyboardType="email-address"
-          onChangeText={onChangeField("email")}
           style={styles.textInput}
           value={email}
+          onChangeText={onChangeField("email")}
         />
       </View>
       <Button

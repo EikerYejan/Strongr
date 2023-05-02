@@ -60,19 +60,17 @@ export const TabNavigator = ({navigation}: Props) => {
       }}
     >
       <Tab.Screen
-        name={SCREEN_NAMES.HOME}
         component={HomeScreen}
+        name={SCREEN_NAMES.HOME}
         options={defaultScreenOptions}
       />
       <Tab.Screen
-        name={SCREEN_NAMES.EXERCISES}
         component={ExercisesScreen}
+        name={SCREEN_NAMES.EXERCISES}
         options={defaultScreenOptions}
       />
       <Tab.Screen
-        name={SCREEN_NAMES.SETTINGS}
         component={MockComponent}
-        options={defaultScreenOptions}
         listeners={{
           tabPress: (e) => {
             e.preventDefault()
@@ -81,6 +79,8 @@ export const TabNavigator = ({navigation}: Props) => {
             })
           }
         }}
+        name={SCREEN_NAMES.SETTINGS}
+        options={defaultScreenOptions}
       />
     </Tab.Navigator>
   )

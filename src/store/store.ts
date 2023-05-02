@@ -16,8 +16,8 @@ const appStateAtom = atom({
 })
 
 const appStateSelector = selector({
-  key: "appStateSelector",
   get: ({get}) => get(appStateAtom),
+  key: "appStateSelector",
   set: ({set}, newValue) => {
     console.log("SAVING APP STATE", newValue)
     Storage.updateAppStorage(newValue as AppState)

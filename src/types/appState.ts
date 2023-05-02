@@ -10,11 +10,11 @@ export interface AppState {
     goal?: string
     height?: number
     name: string
-    weight?: number
     settings: {
       enableProgramNotifications: boolean
       enableWorkoutReminders: boolean
       measureUnit: "metric" | "imperial"
     }
+    weight?: number
   }
 }

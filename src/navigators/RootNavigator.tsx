@@ -21,14 +21,14 @@ export const RootNavigator = () => {
 
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false, presentation: "modal"}}
       initialRouteName={initialRouteName}
+      screenOptions={{headerShown: false, presentation: "modal"}}
     >
-      <Stack.Screen name={NAVIGATORS.AUTH} component={AuthNavigator} />
-      <Stack.Screen name={NAVIGATORS.TABS_NAVIGATOR} component={TabNavigator} />
+      <Stack.Screen component={AuthNavigator} name={NAVIGATORS.AUTH} />
+      <Stack.Screen component={TabNavigator} name={NAVIGATORS.TABS_NAVIGATOR} />
       <Stack.Screen
-        name={NAVIGATORS.PROFILE_NAVIGATOR}
         component={ProfileNavigator}
+        name={NAVIGATORS.PROFILE_NAVIGATOR}
       />
     </Stack.Navigator>
   )
