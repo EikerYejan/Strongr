@@ -19,7 +19,10 @@ const appStateSelector = selector({
   get: ({get}) => get(appStateAtom),
   key: "appStateSelector",
   set: ({set}, newValue) => {
-    console.log("SAVING APP STATE", newValue)
+    if (process.env.NODE_ENV === "development") {
+      console.log("set appStateSelector", newValue)
+    }
+
     Storage.updateAppStorage(newValue as AppState)
     set(appStateAtom, newValue)
   }
