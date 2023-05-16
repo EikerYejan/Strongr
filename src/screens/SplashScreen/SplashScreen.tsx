@@ -1,10 +1,13 @@
-import {Text, View} from "react-native"
+import {ActivityIndicator, Text, View} from "react-native"
 import {useState, useCallback} from "react"
 import {useFonts} from "expo-font"
 import * as SplashScreenApi from "expo-splash-screen"
 
 // components
 import {OnboardingScreen} from "../OnboardingScreen/OnboardingScreen"
+
+// constants
+import {COLORS} from "@strongr/constants/colors"
 
 // styles
 import {splashScreenStyles} from "./styles"
@@ -44,7 +47,9 @@ export const SplashScreen = ({children}: Props) => {
 
       Storage.init()
 
-      setCanRender(true)
+      setTimeout(() => {
+        setCanRender(true)
+      }, 1500)
     }
   }, [fontsLoaded])
 
@@ -64,6 +69,11 @@ export const SplashScreen = ({children}: Props) => {
     <View onLayout={onLayoutRootView}>
       <View style={splashScreenStyles.wrapper}>
         <Text style={splashScreenStyles.heading}>strongr</Text>
+        <ActivityIndicator
+          color={COLORS.WHITE}
+          size="large"
+          style={splashScreenStyles.loader}
+        />
       </View>
     </View>
   )

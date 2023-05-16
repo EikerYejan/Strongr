@@ -4,7 +4,12 @@ import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
 
 export const splashScreenStyles = StyleSheet.create({
+  loader: {
+    marginBottom: 10,
+    marginTop: "auto"
+  },
   heading: {
+    marginTop: "auto",
     fontFamily: FONTS.INTER_BLACK,
     fontSize: 48,
     color: COLORS.PRIMARY
