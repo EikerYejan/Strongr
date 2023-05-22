@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: "com.facebook.react"
 
 import com.android.build.OutputFile
 
@@ -138,7 +139,7 @@ def reactNativeArchitectures() {
 
 android {
     ndkVersion rootProject.ext.ndkVersion
-
+    namespace 'com.eikeryejan.strongr'
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
@@ -275,11 +276,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-
-    //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules
-
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
@@ -305,23 +301,16 @@ dependencies {
         }
     }
 
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.fbjni'
-    }
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
+
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.flipper'
         exclude group:'com.squareup.okhttp3', module:'okhttp'
     }
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.flipper'
-    }
+    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
 
-    if (enableHermes) {
-        //noinspection GradleDynamicVersion
-        implementation("com.facebook.react:hermes-engine:+") { // From node_modules
-            exclude group:'com.facebook.fbjni'
-        }
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
