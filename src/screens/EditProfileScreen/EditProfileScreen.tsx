@@ -14,6 +14,7 @@ import {editProfileScreenStyles as styles} from "./styles"
 
 // types
 import type {NavigationProp} from "@react-navigation/native"
+import {set} from "react-native-reanimated"
 
 interface Props {
   navigation: NavigationProp<never>
@@ -25,10 +26,14 @@ export const EditProfileScreen = ({navigation}: Props) => {
     user: {age: userAge, email: userEmail, name: userName, weight: userWeight}
   } = appState
 
-  const [name, setName] = useState(userName)
-  const [email, setEmail] = useState(userEmail)
-  const [age, setAge] = useState(userAge)
-  const [weight, setWeight] = useState(userWeight)
+  const [fields, setFields] = useState({
+    age: userAge,
+    email: userEmail,
+    name: userName,
+    weight: userWeight
+  })
+
+  const {age, email, name, weight} = fields
 
   const canSave = useMemo(() => {
     return (
@@ -37,26 +42,10 @@ export const EditProfileScreen = ({navigation}: Props) => {
       age !== userAge ||
       weight !== userWeight
     )
-  }, [age, email, name, userAge, userEmail, userName, userWeight, weight])
+  }, [fields, userAge, userEmail, userName, userWeight])
 
   const onChangeField = (field: string) => (value: string) => {
-    // TODO: improve this
-
-    if (field === "email") {
-      setEmail(value.toLowerCase())
-    }
-
-    if (field === "name") {
-      setName(value)
-    }
-
-    if (field === "age") {
-      setAge(Number(value))
-    }
-
-    if (field === "weight") {
-      setWeight(Number(value))
-    }
+    setFields((prevFields) => ({...prevFields, [field]: value}))
   }
 
   const onSave = () => {
