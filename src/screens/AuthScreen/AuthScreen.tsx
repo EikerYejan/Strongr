@@ -1,4 +1,4 @@
-import {Animated, View} from "react-native"
+import {Animated, KeyboardAvoidingView, Platform, View} from "react-native"
 import {useCallback, useEffect, useRef, useState} from "react"
 
 // components
@@ -71,11 +71,15 @@ export const AuthScreen = ({navigation}: Props) => {
     <View>
       <AuthScreenTabs activeTab={activeTab} onTabPress={onTabChange} />
       <Animated.View style={{opacity: fadeAnim}}>
-        {activeTab === "login" ? (
-          <LoginForm userName={name} onSubmit={onSubmit} />
-        ) : (
-          <SignupForm onSubmit={onSubmit} />
-        )}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          {activeTab === "login" ? (
+            <LoginForm userName={name} onSubmit={onSubmit} />
+          ) : (
+            <SignupForm onSubmit={onSubmit} />
+          )}
+        </KeyboardAvoidingView>
       </Animated.View>
     </View>
   )

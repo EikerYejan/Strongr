@@ -1,4 +1,4 @@
-import {Text, View} from "react-native"
+import {KeyboardAvoidingView, Platform, Text, View} from "react-native"
 import {useMemo, useState} from "react"
 
 // components
@@ -22,59 +22,105 @@ interface Props {
 export const EditProfileScreen = ({navigation}: Props) => {
   const {appState, updateAppState} = useAppState()
   const {
-    user: {email: userEmail, name: userName}
+    user: {age: userAge, email: userEmail, name: userName, weight: userWeight}
   } = appState
 
   const [name, setName] = useState(userName)
   const [email, setEmail] = useState(userEmail)
+  const [age, setAge] = useState(userAge)
+  const [weight, setWeight] = useState(userWeight)
 
   const canSave = useMemo(() => {
-    return name !== userName || email !== userEmail
-  }, [email, name, userEmail, userName])
+    return (
+      name !== userName ||
+      email !== userEmail ||
+      age !== userAge ||
+      weight !== userWeight
+    )
+  }, [age, email, name, userAge, userEmail, userName, userWeight, weight])
 
   const onChangeField = (field: string) => (value: string) => {
-    if (field === "name") {
-      setName(value)
-    }
+    // TODO: improve this
 
     if (field === "email") {
       setEmail(value.toLowerCase())
     }
+
+    if (field === "name") {
+      setName(value)
+    }
+
+    if (field === "age") {
+      setAge(Number(value))
+    }
+
+    if (field === "weight") {
+      setWeight(Number(value))
+    }
   }
 
   const onSave = () => {
-    updateAppState({user: {email, name}})
+    updateAppState({user: {age, email, name, weight}})
     navigation.goBack()
   }
 
   return (
     <ScreenWrapper>
-      <View style={styles.optionContainer}>
-        <Text style={styles.optionLabel}>Name</Text>
-        <TextInput
-          style={styles.textInput}
-          value={name}
-          onChangeText={onChangeField("name")}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View style={styles.optionContainer}>
+          <Text style={styles.optionLabel}>Name</Text>
+          <TextInput
+            style={styles.textInput}
+            value={name}
+            onChangeText={onChangeField("name")}
+          />
+        </View>
+        <View style={styles.optionContainer}>
+          <Text style={styles.optionLabel}>Email</Text>
+          <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="email-address"
+            style={styles.textInput}
+            value={email}
+            onChangeText={onChangeField("email")}
+          />
+        </View>
+        <View style={styles.optionContainer}>
+          <Text style={styles.optionLabel}>Age</Text>
+          <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            inputMode="numeric"
+            keyboardType="number-pad"
+            returnKeyType="done"
+            style={styles.textInput}
+            value={String(age || 0)}
+            onChangeText={onChangeField("age")}
+          />
+        </View>
+        <View style={styles.optionContainer}>
+          <Text style={styles.optionLabel}>Weight</Text>
+          <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="number-pad"
+            returnKeyType="done"
+            style={styles.textInput}
+            value={String(weight || 0)}
+            onChangeText={onChangeField("weight")}
+          />
+        </View>
+        <Button
+          disabled={!canSave}
+          size="large"
+          style={styles.saveButton}
+          title="Save"
+          onPress={onSave}
         />
-      </View>
-      <View style={styles.optionContainer}>
-        <Text style={styles.optionLabel}>Email</Text>
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          keyboardType="email-address"
-          style={styles.textInput}
-          value={email}
-          onChangeText={onChangeField("email")}
-        />
-      </View>
-      <Button
-        disabled={!canSave}
-        size="large"
-        style={styles.saveButton}
-        title="Save"
-        onPress={onSave}
-      />
+      </KeyboardAvoidingView>
     </ScreenWrapper>
   )
 }

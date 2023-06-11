@@ -20,7 +20,7 @@ export const editProfileScreenStyles = StyleSheet.create({
     paddingLeft: 0
   },
   saveButton: {
-    marginTop: "100%",
+    marginTop: 100,
     bottom: -30
   }
 })
