@@ -1,5 +1,6 @@
 import {Dimensions, Image, Text, View} from "react-native"
 import {useRef, useState} from "react"
+import {GestureHandlerRootView} from "react-native-gesture-handler"
 
 // components
 import Carousel from "react-native-reanimated-carousel"
@@ -82,7 +83,7 @@ export const OnboardingSlider = ({onGetStartedPress}: Props) => {
   }
 
   return (
-    <View>
+    <GestureHandlerRootView style={{flex: 1}}>
       <Carousel<Slide>
         snapEnabled
         ref={carousel}
@@ -104,6 +105,6 @@ export const OnboardingSlider = ({onGetStartedPress}: Props) => {
         screenWidth={width}
         onItemPress={onIndicatorPress}
       />
-    </View>
+    </GestureHandlerRootView>
   )
 }
