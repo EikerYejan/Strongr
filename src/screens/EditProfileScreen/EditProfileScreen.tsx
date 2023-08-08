@@ -14,7 +14,6 @@ import {editProfileScreenStyles as styles} from "./styles"
 
 // types
 import type {NavigationProp} from "@react-navigation/native"
-import {set} from "react-native-reanimated"
 
 interface Props {
   navigation: NavigationProp<never>

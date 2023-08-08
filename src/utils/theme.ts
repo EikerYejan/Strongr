@@ -5,14 +5,19 @@ import type {TextStyle, ViewStyle} from "react-native"
 
 type Styles = Record<string, ViewStyle | TextStyle>
 
+type ThemedPropValue = number | string
+
 export const getColorScheme = () => {
   return Appearance.getColorScheme() ?? "dark"
 }
 
-export const themedProp = (
-  defaultProp: string | number,
-  lightProp: string | number
-) => {
+export const themedProp = <
+  T extends ThemedPropValue,
+  F extends ThemedPropValue
+>(
+  defaultProp: T,
+  lightProp: F
+): T | F => {
   const theme = getColorScheme()
 
   return theme === "light" ? lightProp : defaultProp

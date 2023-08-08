@@ -15,10 +15,13 @@ import {NavigationContainer} from "@react-navigation/native"
 // screens
 import {SplashScreen} from "./src/screens/SplashScreen/SplashScreen"
 
+// types
+import type {ViewStyle} from "react-native"
+
 // utils
 import {getColorScheme, themedColor} from "@strongr/utils/theme"
 
-const safeAreaViewStyles = {
+const safeAreaViewStyles: ViewStyle = {
   backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
   height: "100%"
 }

@@ -14,6 +14,7 @@ import {Storage} from "@strongr/store/storage"
 
 // types
 import type {NavigationProp} from "@react-navigation/native"
+import type {Props as MenuOptionProps} from "@strongr/components/MenuOption/MenuOption"
 
 // utils
 import {useAppState} from "@strongr/store/store"
@@ -44,7 +45,7 @@ export const ProfileScreen = ({navigation}: Props) => {
     ])
   }
 
-  const menuOptions = [
+  const menuOptions: MenuOptionProps[] = [
     {
       label: "Edit Profile",
       onPress: () => {

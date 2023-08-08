@@ -1,5 +1,4 @@
 import {View} from "react-native"
-import type {TouchableOpacityProps} from "react-native"
 
 // components
 import {Icon} from "@strongr/components/Icons/Icons"
@@ -12,11 +11,12 @@ import {tabNavigationButtonStyles} from "./styles"
 
 // types
 import type {IconName} from "@strongr/components/Icons/Icons"
+import type {ViewProps} from "react-native"
 
 // utils
 import {themedColor} from "@strongr/utils/theme"
 
-type TabNavigationButtonProps = TouchableOpacityProps & {
+type TabNavigationButtonProps = ViewProps & {
   focused?: boolean
   iconName: IconName
 }

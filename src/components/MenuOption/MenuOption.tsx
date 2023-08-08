@@ -14,7 +14,7 @@ import {menuOptionStyles as styles} from "./styles"
 // types
 import type {TextStyle, ViewStyle} from "react-native"
 
-interface Props {
+export interface Props {
   checked?: boolean
   disabled?: boolean
   inidicatorType?: "arrow" | "check" | "toggle"
