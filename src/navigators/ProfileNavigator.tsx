@@ -35,7 +35,7 @@ export const ProfileNavigator = () => {
           <BackButton {...props} arrowDirection="left" height={32} width={32} />
         ),
         headerLeftContainerStyle: {
-          paddingLeft: 32 as 32,
+          paddingLeft: 32 as const,
           paddingTop: themedProp(32, 2)
         },
         headerStyle: {
