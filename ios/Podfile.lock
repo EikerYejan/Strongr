@@ -520,7 +520,7 @@ PODS:
     - React-perflogger (= 0.72.5)
   - RNCPicker (2.5.1):
     - React-Core
-  - RNGestureHandler (2.12.0):
+  - RNGestureHandler (2.13.1):
     - React-Core
   - RNReanimated (3.5.4):
     - DoubleConversion
@@ -826,7 +826,7 @@ SPEC CHECKSUMS:
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
   RNCPicker: 529d564911e93598cc399b56cc0769ce3675f8c8
-  RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
+  RNGestureHandler: 38aa38413896620338948fbb5c90579a7b1c3fde
   RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   RNSVG: d00c8f91c3cbf6d476451313a18f04d220d4f396
