@@ -36,6 +36,12 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+  NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+  NSString *buildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+  
+  [[NSUserDefaults standardUserDefaults] setObject:appVersion forKey:@"app_version"];
+  [[NSUserDefaults standardUserDefaults] setObject:buildNumber forKey:@"app_build"];
+  
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
