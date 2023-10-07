@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {ActivityIndicator, FlatList, Modal, Text, View} from "react-native"
+import {ActivityIndicator, FlatList, Modal, Text} from "react-native"
 import {useQuery} from "react-query"
 
 // components
@@ -7,6 +7,7 @@ import {ContentModal} from "@strongr/components/ContentModal/ContentModal"
 import {Card} from "@strongr/components/Card/Card"
 import {Button} from "@strongr/components/Button/Button"
 import {SearchInput} from "@strongr/components/SearchInput/SearchInput"
+import {View} from "@strongr/components/View/View"
 
 // hooks
 import {useDebounce} from "@strongr/hooks/useDebounce"

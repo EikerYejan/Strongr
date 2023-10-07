@@ -1,5 +1,6 @@
-import {ImageBackground, Text, TouchableOpacity, View} from "react-native"
+import {ImageBackground, Text, TouchableOpacity} from "react-native"
 import {LinearGradient} from "expo-linear-gradient"
+import {View} from "@strongr/components/View/View"
 
 // styles
 import {cardStyles as styles} from "./styles"

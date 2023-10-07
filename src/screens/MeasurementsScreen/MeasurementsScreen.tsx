@@ -1,6 +1,10 @@
+import {ScrollView, Text, TouchableOpacity} from "react-native"
+
 import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
-import {ScrollView, Text, TouchableOpacity, View} from "react-native"
+import {View} from "@strongr/components/View/View"
+
 import {measurementsScreenStyles as styles} from "./styles"
+
 import {Icon} from "@strongr/components/Icons/Icons"
 import {COLORS} from "@strongr/constants/colors"
 

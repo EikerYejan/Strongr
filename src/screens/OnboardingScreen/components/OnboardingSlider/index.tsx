@@ -1,10 +1,11 @@
-import {Dimensions, Image, Text, View} from "react-native"
+import {Dimensions, Image, Text} from "react-native"
 import {useRef, useState} from "react"
 import {GestureHandlerRootView} from "react-native-gesture-handler"
 
 // components
 import Carousel from "react-native-reanimated-carousel"
 import {Button} from "@strongr/components/Button/Button"
+import {View} from "@strongr/components/View/View"
 
 // styles
 import {styles} from "./styles"

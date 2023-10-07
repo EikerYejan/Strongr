@@ -1,8 +1,9 @@
-import {Image, ScrollView, Text, View} from "react-native"
+import {Image, ScrollView, Text} from "react-native"
 
 // components
 import {TextInput} from "@strongr/components/TextInput/TextInput"
 import {Button} from "@strongr/components/Button/Button"
+import {View} from "@strongr/components/View/View"
 
 // constants
 import {COLORS} from "@strongr/constants/colors"

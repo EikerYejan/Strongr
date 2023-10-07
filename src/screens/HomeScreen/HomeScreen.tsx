@@ -1,9 +1,10 @@
 import {useMemo, useState} from "react"
-import {Modal, Text, View} from "react-native"
+import {Modal, Text} from "react-native"
 
 // components
 import {Card} from "@strongr/components/Card/Card"
 import {SectionHeading} from "@strongr/components/SectionHeading/SectionHeading"
+import {View} from "@strongr/components/View/View"
 
 // fixgures
 import {warmup} from "@strongr/fixtures/workouts"

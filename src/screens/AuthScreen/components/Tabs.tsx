@@ -1,4 +1,6 @@
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native"
+import {StyleSheet, Text, TouchableOpacity} from "react-native"
+
+import {View} from "@strongr/components/View/View"
 
 // constants
 import {COLORS} from "@strongr/constants/colors"

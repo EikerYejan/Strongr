@@ -1,6 +1,5 @@
-import {View} from "react-native"
-
 import {Indicator} from "./Indicator"
+import {View} from "@strongr/components/View/View"
 
 import {indicatorStyles as styles} from "./styles"
 

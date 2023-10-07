@@ -1,4 +1,6 @@
-import {Pressable, Text, View} from "react-native"
+import {Pressable, Text} from "react-native"
+
+import {View} from "../View/View"
 
 // styles
 import {sectionHeadingStyles as styles} from "./styles"

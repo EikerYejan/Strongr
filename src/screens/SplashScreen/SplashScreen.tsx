@@ -1,10 +1,11 @@
-import {ActivityIndicator, Text, View} from "react-native"
+import {ActivityIndicator, Text} from "react-native"
 import {useState, useCallback} from "react"
 import {useFonts} from "expo-font"
 import * as SplashScreenApi from "expo-splash-screen"
 
 // components
 import {OnboardingScreen} from "../OnboardingScreen/OnboardingScreen"
+import {View} from "@strongr/components/View/View"
 
 // styles
 import {splashScreenStyles} from "./styles"

@@ -1,7 +1,6 @@
-import {View} from "react-native"
-
 // components
 import {Icon} from "@strongr/components/Icons/Icons"
+import {View} from "@strongr/components/View/View"
 
 // constants
 import {COLORS} from "@strongr/constants/colors"

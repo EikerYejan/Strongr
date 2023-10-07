@@ -1,4 +1,3 @@
-import {View} from "react-native"
 import {useCallback} from "react"
 
 // components
@@ -114,9 +113,5 @@ export const SettingsContent = ({contentType}: Props) => {
     onUnitOfMeasureChange
   ])
 
-  return (
-    <ScreenWrapper>
-      <View>{renderContent()}</View>
-    </ScreenWrapper>
-  )
+  return <ScreenWrapper>{renderContent()}</ScreenWrapper>
 }

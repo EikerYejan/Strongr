@@ -1,10 +1,11 @@
-import {KeyboardAvoidingView, Platform, Text, View} from "react-native"
+import {KeyboardAvoidingView, Platform, Text} from "react-native"
 import {useMemo, useState} from "react"
 
 // components
 import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
 import {TextInput} from "@strongr/components/TextInput/TextInput"
 import {Button} from "@strongr/components/Button/Button"
+import {View} from "@strongr/components/View/View"
 
 // store
 import {useAppState} from "@strongr/store/store"

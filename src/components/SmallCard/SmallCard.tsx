@@ -1,4 +1,6 @@
-import {Image, Text, View} from "react-native"
+import {Image, Text} from "react-native"
+
+import {View} from "../View/View"
 
 // styles
 import {smallCardStyles as styles} from "./styles"

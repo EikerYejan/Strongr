@@ -1,8 +1,9 @@
 import {useEffect, useRef, useState} from "react"
-import {Text, TouchableOpacity, View} from "react-native"
+import {Text, TouchableOpacity} from "react-native"
 
 // components
 import {TextInput} from "../TextInput/TextInput"
+import {View} from "../View/View"
 
 // styles
 import {searchInputStyles as styles} from "./styles"

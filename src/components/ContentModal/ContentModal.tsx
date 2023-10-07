@@ -1,11 +1,12 @@
 import {Children, cloneElement} from "react"
-import {Image, Pressable, ScrollView, Text, View} from "react-native"
+import {Image, Pressable, ScrollView, Text} from "react-native"
 import {LinearGradient} from "expo-linear-gradient"
 
 // components
 import {Icon} from "@strongr/components/Icons/Icons"
 import {Button} from "@strongr/components/Button/Button"
 import {SmallCard} from "@strongr/components/SmallCard/SmallCard"
+import {View} from "@strongr/components/View/View"
 
 // constants
 import {COLORS} from "@strongr/constants/colors"

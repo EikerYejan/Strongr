@@ -1,10 +1,11 @@
-import {Animated, KeyboardAvoidingView, Platform, View} from "react-native"
+import {Animated, KeyboardAvoidingView, Platform} from "react-native"
 import {useCallback, useEffect, useRef, useState} from "react"
 
 // components
 import {SignupForm} from "./components/SignupForm"
 import {LoginForm} from "./components/LoginForm"
 import {AuthScreenTabs} from "./components/Tabs"
+import {View} from "@strongr/components/View/View"
 
 // constants
 import {NAVIGATORS} from "@strongr/constants/screens"

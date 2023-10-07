@@ -1,5 +1,3 @@
-import {View} from "react-native"
-
 // components
 import {MenuOption} from "@strongr/components/MenuOption/MenuOption"
 import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
@@ -34,18 +32,16 @@ export const SettingsScreen = ({navigation}: Props) => {
 
   return (
     <ScreenWrapper>
-      <View>
-        <MenuOption
-          label="Units of Measure"
-          onPress={onItemPress(settingsContentType.UNITS_OF_MEASURE)}
-        />
-        <MenuOption
-          label="Notifications"
-          onPress={onItemPress(settingsContentType.NOTIFICATIONS)}
-        />
-        <MenuOption disabled label="Language" />
-        <MenuOption disabled label="Contact Us" />
-      </View>
+      <MenuOption
+        label="Units of Measure"
+        onPress={onItemPress(settingsContentType.UNITS_OF_MEASURE)}
+      />
+      <MenuOption
+        label="Notifications"
+        onPress={onItemPress(settingsContentType.NOTIFICATIONS)}
+      />
+      <MenuOption disabled label="Language" />
+      <MenuOption disabled label="Contact Us" />
     </ScreenWrapper>
   )
 }

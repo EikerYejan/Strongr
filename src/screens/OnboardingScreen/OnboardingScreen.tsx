@@ -1,4 +1,4 @@
-import {Animated, Text, View} from "react-native"
+import {Animated, Text} from "react-native"
 import {useCallback, useEffect, useMemo, useRef, useState} from "react"
 import {Picker} from "@react-native-picker/picker"
 
@@ -7,6 +7,7 @@ import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
 import {BackButton} from "@strongr/components/BackButton/BackButton"
 import {Button} from "@strongr/components/Button/Button"
 import {OnboardingSlider} from "./components/OnboardingSlider"
+import {View} from "@strongr/components/View/View"
 
 // constants
 import {ONBOARDING_STEPS} from "./constants"

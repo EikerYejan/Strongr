@@ -1,7 +1,8 @@
-import {TextInput as NativeInput, View} from "react-native"
+import {TextInput as NativeInput} from "react-native"
 
 // components
 import {Icon} from "../Icons/Icons"
+import {View} from "../View/View"
 
 // constants
 import {COLORS} from "@strongr/constants/colors"
