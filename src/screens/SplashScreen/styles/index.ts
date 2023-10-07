@@ -2,6 +2,7 @@ import {StyleSheet} from "react-native"
 
 import {COLORS} from "@strongr/constants/colors"
 import {FONTS} from "@strongr/constants/fonts"
+import {themedColor} from "@strongr/utils/theme"
 
 export const splashScreenStyles = StyleSheet.create({
   loader: {
@@ -15,7 +16,7 @@ export const splashScreenStyles = StyleSheet.create({
     color: COLORS.PRIMARY
   },
   wrapper: {
-    backgroundColor: COLORS.DARK_1,
+    backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
     alignItems: "center",
     height: "100%",
     justifyContent: "center",
