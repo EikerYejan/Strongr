@@ -92,9 +92,9 @@ export const HomeScreen = () => {
       <View>
         <SectionHeading heading="Today Workout Plan" rightText="Mon 26 Apr" />
         <Card
-          title={warmup.name}
-          subtitle={warmup.scheduledTime}
           imageUrl={warmup.imageUrl}
+          subtitle={warmup.scheduledTime}
+          title={warmup.name}
           onPress={onWotkoutCardPress}
         />
       </View>

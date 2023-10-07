@@ -64,14 +64,14 @@ export const ContentModal = ({data, onClose}: Props) => {
       <Pressable style={styles.closeButton} onPress={onClose}>
         <Icon fill={COLORS.WHITE} name="ArrowLeft" />
       </Pressable>
-      <Image style={styles.image} source={{uri: imageUrl}} />
+      <Image source={{uri: imageUrl}} style={styles.image} />
       <View style={styles.contentContainer}>
         <ScrollView
           contentInset={{
             right: -10
           }}
-          style={styles.scrollView}
           indicatorStyle="white"
+          style={styles.scrollView}
         >
           <Text style={styles.workoutName}>{heading}</Text>
           {subHeading ? (
@@ -105,9 +105,9 @@ export const ContentModal = ({data, onClose}: Props) => {
         style={styles.workoutStartButtonWrapper}
       >
         <Button
+          style={styles.workoutStartButton}
           title="Start Workout"
           onPress={() => {}}
-          style={styles.workoutStartButton}
         />
       </LinearGradient>
     </View>

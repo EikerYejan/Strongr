@@ -32,15 +32,15 @@ export const Card = ({
   return (
     <TouchableOpacity
       disabled={!onPress}
-      onPress={onPress}
       style={[styles.container, customStyles]}
+      onPress={onPress}
     >
       <BackgroundComponent
         resizeMode="cover"
-        style={[styles.imageBackground, styles.defaultWrapper]}
         source={{uri: imageUrl}}
+        style={[styles.imageBackground, styles.defaultWrapper]}
       >
-        <LinearGradient style={styles.imageBackground} colors={gradientColors}>
+        <LinearGradient colors={gradientColors} style={styles.imageBackground}>
           <View style={styles.content}>
             <Text style={styles.heading}>{title}</Text>
             {subtitle ? (

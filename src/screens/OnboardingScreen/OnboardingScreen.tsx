@@ -87,11 +87,11 @@ export const OnboardingScreen = () => {
 
     return (
       <Picker
-        selectedValue={pickerSelectedValue}
         itemStyle={[
           styles.pickerOption,
           useSmallPickerFont ? {fontSize: 28} : {fontSize: 58}
         ]}
+        selectedValue={pickerSelectedValue}
         style={styles.picker}
         onValueChange={onSelectionChange}
       >

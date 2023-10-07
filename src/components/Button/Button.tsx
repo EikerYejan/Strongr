@@ -66,7 +66,7 @@ export const Button = ({
       {...props}
     >
       {loading ? (
-        <ActivityIndicator size="large" color={COLORS.WHITE} />
+        <ActivityIndicator color={COLORS.WHITE} size="large" />
       ) : (
         <>
           {leftIconName ? (

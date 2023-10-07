@@ -71,8 +71,8 @@ export const OnboardingSlider = ({onGetStartedPress}: Props) => {
           <View style={styles.contentBackground} />
           {index === slides.length - 1 && (
             <Button
-              style={styles.slideButton}
               rightIconName="ArrowRight"
+              style={styles.slideButton}
               title="Start Now"
               onPress={onGetStartedPress}
             />
@@ -86,15 +86,15 @@ export const OnboardingSlider = ({onGetStartedPress}: Props) => {
     <GestureHandlerRootView style={{flex: 1}}>
       <Carousel<Slide>
         snapEnabled
-        ref={carousel}
+        data={slides}
+        loop={false}
         mode="horizontal-stack"
         modeConfig={{
           snapDirection: "left",
           stackInterval: 20,
           moveSize: width + 200
         }}
-        data={slides}
-        loop={false}
+        ref={carousel}
         renderItem={renderSlide}
         width={width}
         onScrollEnd={setActiveIndex}

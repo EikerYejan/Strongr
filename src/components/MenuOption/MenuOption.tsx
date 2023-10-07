@@ -62,9 +62,9 @@ export const MenuOption = ({
     if (inidicatorType === "toggle") {
       return (
         <Switch
-          onValueChange={onCheck}
           trackColor={{false: COLORS.DARK_2, true: COLORS.PRIMARY}}
           value={checked}
+          onValueChange={onCheck}
         />
       )
     }

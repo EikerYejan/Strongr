@@ -31,7 +31,7 @@ export const TabNavigationButton = ({
   return (
     <View {...props} style={tabNavigationButtonStyles.container}>
       {iconName ? (
-        <Icon width={30} height={30} fill={fill} name={iconName} />
+        <Icon fill={fill} height={30} name={iconName} width={30} />
       ) : null}
     </View>
   )

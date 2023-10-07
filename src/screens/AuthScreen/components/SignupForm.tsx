@@ -26,9 +26,9 @@ export const SignupForm = ({onSubmit}: Props) => {
     <AuthForm
       backgroundImage={SIGNUP_FORM_BACKGROUND}
       buttonText="Sign up"
+      description="Enter your informations below or login with a other account"
       heading="Hello"
       headingAccent="newbie,"
-      description="Enter your informations below or login with a other account"
       inputs={[
         {
           autoCorrect: false,

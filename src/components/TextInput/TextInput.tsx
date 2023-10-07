@@ -30,7 +30,7 @@ export const TextInput = ({
   return (
     <View style={[styles.container, style]}>
       {iconName ? (
-        <Icon width={22} height={22} fill={COLORS.WHITE} name={iconName} />
+        <Icon fill={COLORS.WHITE} height={22} name={iconName} width={22} />
       ) : null}
       <NativeInput
         placeholderTextColor={placeholderTextColor ?? COLORS.WHITE}

@@ -59,8 +59,8 @@ export const SearchInput = ({
       {searchTerm ? (
         <TouchableOpacity
           disabled={disabled}
-          onPress={onClearInput}
           style={styles.clearIconContainer}
+          onPress={onClearInput}
         >
           <Text style={styles.clearIcon}>&times;</Text>
         </TouchableOpacity>

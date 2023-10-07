@@ -41,7 +41,7 @@ export const EditProfileScreen = ({navigation}: Props) => {
       age !== userAge ||
       weight !== userWeight
     )
-  }, [fields, userAge, userEmail, userName, userWeight])
+  }, [age, email, name, weight, userAge, userEmail, userName, userWeight])
 
   const onChangeField = (field: string) => (value: string) => {
     setFields((prevFields) => ({...prevFields, [field]: value}))
@@ -85,7 +85,7 @@ export const EditProfileScreen = ({navigation}: Props) => {
             keyboardType="number-pad"
             returnKeyType="done"
             style={styles.textInput}
-            value={String(age || 0)}
+            value={String(age ?? 0)}
             onChangeText={onChangeField("age")}
           />
         </View>
@@ -97,7 +97,7 @@ export const EditProfileScreen = ({navigation}: Props) => {
             keyboardType="number-pad"
             returnKeyType="done"
             style={styles.textInput}
-            value={String(weight || 0)}
+            value={String(weight ?? 0)}
             onChangeText={onChangeField("weight")}
           />
         </View>

@@ -79,10 +79,10 @@ export const ExercisesScreen = () => {
     return (
       <View style={styles.cardContainer}>
         <Card
-          onPress={onPress}
           styles={styles.card}
-          title={item.name}
           subtitle={item.category}
+          title={item.name}
+          onPress={onPress}
         />
       </View>
     )
@@ -91,17 +91,17 @@ export const ExercisesScreen = () => {
   const renderContent = () => {
     if (isLoading && !exercises.length && !error) {
       return (
-        <ActivityIndicator style={styles.loader} size="large" color="white" />
+        <ActivityIndicator color="white" size="large" style={styles.loader} />
       )
     }
 
     if (error) {
       return (
         <Button
-          onPress={refetch}
-          title="There's been an error, please retry"
           size="small"
+          title="There's been an error, please retry"
           type="dark"
+          onPress={refetch}
         />
       )
     }
@@ -110,8 +110,8 @@ export const ExercisesScreen = () => {
       <View>
         <FlatList
           data={exercises}
-          renderItem={renderItem}
           keyExtractor={(item) => item.name}
+          renderItem={renderItem}
         />
       </View>
     )
@@ -126,7 +126,7 @@ export const ExercisesScreen = () => {
         visible={!!modalData}
       >
         {modalData ? (
-          <ContentModal onClose={onModalClose} data={modalData} />
+          <ContentModal data={modalData} onClose={onModalClose} />
         ) : null}
       </Modal>
       <View style={styles.searchBarWrapper}>

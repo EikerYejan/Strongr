@@ -14,7 +14,7 @@
     "build:eas:ios:prod": "eas build --profile production --platform ios",
     "submit:ios": "eas submit -p ios",
     "build:testflight": "yarn build:eas:ios:prod && yarn submit:ios",
-    "lint": "eslint src/**/*.ts{,x}",
+    "lint": "eslint src/**/*.{ts,tsx}",
     "type-check": "tsc"
   },
   "dependencies": {

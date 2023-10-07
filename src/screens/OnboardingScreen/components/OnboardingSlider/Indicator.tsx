@@ -25,12 +25,12 @@ export const Indicator = ({isActive, onPress}: Props) => {
 
   return (
     <Animated.Text
-      onPress={onPress}
       style={[
         styles.indicator,
         isActive ? styles.indicatorActive : {},
         {width}
       ]}
+      onPress={onPress}
     />
   )
 }
