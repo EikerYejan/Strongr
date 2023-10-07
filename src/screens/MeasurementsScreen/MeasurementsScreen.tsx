@@ -100,7 +100,7 @@ export const MeasurementsScreen = () => {
           </View>
         </Modal>
 
-        {Object.entries(appState.user.measurements).map(([key, val]) => {
+        {Object.entries(appState.user.measurements || {}).map(([key, val]) => {
           const {label, unit, value} = val
 
           return (
