@@ -15,6 +15,7 @@ import {SCREEN_NAMES} from "@strongr/constants/screens"
 import type {SettingsContentType} from "@strongr/constants/screens"
 import {COLORS} from "@strongr/constants/colors"
 import {themedColor, themedProp} from "@strongr/utils/theme"
+import {MeasurementsScreen} from "@strongr/screens/MeasurementsScreen/MeasurementsScreen"
 
 const Stack = createStackNavigator<{
   [SCREEN_NAMES.EDIT_PROFILE]: never
@@ -24,6 +25,7 @@ const Stack = createStackNavigator<{
   [SCREEN_NAMES.SETTINGS_CONTENT]: {
     contentType: SettingsContentType
   }
+  [SCREEN_NAMES.MEASUREMENTS]: never
 }>()
 
 export const ProfileNavigator = () => {
@@ -74,6 +76,13 @@ export const ProfileNavigator = () => {
       <Stack.Screen
         component={EditProfileScreen}
         name={SCREEN_NAMES.EDIT_PROFILE}
+      />
+      <Stack.Screen
+        component={MeasurementsScreen}
+        name={SCREEN_NAMES.MEASUREMENTS}
+        options={{
+          title: "Your Measurements"
+        }}
       />
     </Stack.Navigator>
   )

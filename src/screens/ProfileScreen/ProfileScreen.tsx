@@ -36,11 +36,11 @@ export const ProfileScreen = ({navigation}: Props) => {
         text: "Cancel"
       },
       {
-        text: "Reset",
         onPress: () => {
           Storage.clearAppStorage()
           RNRestart.restart()
-        }
+        },
+        text: "Reset"
       }
     ])
   }
@@ -50,6 +50,12 @@ export const ProfileScreen = ({navigation}: Props) => {
       label: "Edit Profile",
       onPress: () => {
         onOptionPress(SCREEN_NAMES.EDIT_PROFILE)
+      }
+    },
+    {
+      label: "Measurements",
+      onPress: () => {
+        onOptionPress(SCREEN_NAMES.MEASUREMENTS)
       }
     },
     {
@@ -66,12 +72,12 @@ export const ProfileScreen = ({navigation}: Props) => {
     },
     {
       label: "Reset App Storage",
-      onPress: onResetAppStoragePress,
-      showIcon: false,
       labelStyles: {
         color: COLORS.PRIMARY,
         fontSize: 17
-      }
+      },
+      onPress: onResetAppStoragePress,
+      showIcon: false
     },
     {
       label: "Sign Out",
@@ -79,17 +85,17 @@ export const ProfileScreen = ({navigation}: Props) => {
         color: COLORS.ERROR,
         fontSize: 17
       },
-      showIcon: false,
-      style: {
-        borderTopWidth: 1,
-        marginTop: "auto"
-      },
       onPress: () => {
         updateAppState({hasAuth: false})
         navigation.reset({
           index: 1,
           routes: [{name: NAVIGATORS.AUTH}]
         })
+      },
+      showIcon: false,
+      style: {
+        borderTopWidth: 1,
+        marginTop: "auto"
       }
     }
   ]

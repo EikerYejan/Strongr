@@ -13,6 +13,7 @@ export const SCREEN_NAMES = {
   EXERCISES: "Exercises",
   HOME: "Home",
   LOGIN: "Login",
+  MEASUREMENTS: "Measurements",
   ONBOARDING: "Onboarding",
   PRIVACY: "Privacy",
   PROFILE: "Profile",

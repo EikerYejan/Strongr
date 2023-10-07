@@ -18,10 +18,8 @@ import type {SettingsContentType} from "@strongr/constants/screens"
 interface Props {
   navigation: NavigationProp<{
     [NAVIGATORS.PROFILE_NAVIGATOR]: {
+      params: {contentType: SettingsContentType}
       screen: typeof SCREEN_NAMES.SETTINGS_CONTENT
-      params: {
-        contentType: SettingsContentType
-      }
     }
   }>
 }
@@ -29,10 +27,8 @@ interface Props {
 export const SettingsScreen = ({navigation}: Props) => {
   const onItemPress = (type: SettingsContentType) => () => {
     navigation.navigate(NAVIGATORS.PROFILE_NAVIGATOR, {
-      screen: SCREEN_NAMES.SETTINGS_CONTENT,
-      params: {
-        contentType: type
-      }
+      params: {contentType: type},
+      screen: SCREEN_NAMES.SETTINGS_CONTENT
     })
   }
 
@@ -40,12 +36,12 @@ export const SettingsScreen = ({navigation}: Props) => {
     <ScreenWrapper>
       <View>
         <MenuOption
-          onPress={onItemPress(settingsContentType.UNITS_OF_MEASURE)}
           label="Units of Measure"
+          onPress={onItemPress(settingsContentType.UNITS_OF_MEASURE)}
         />
         <MenuOption
-          onPress={onItemPress(settingsContentType.NOTIFICATIONS)}
           label="Notifications"
+          onPress={onItemPress(settingsContentType.NOTIFICATIONS)}
         />
         <MenuOption disabled label="Language" />
         <MenuOption disabled label="Contact Us" />
