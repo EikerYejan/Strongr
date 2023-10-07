@@ -1,109 +1,61 @@
-import {ScrollView, Text, TouchableOpacity} from "react-native"
+import {Modal, ScrollView, Text, TouchableOpacity} from "react-native"
+import {useRef, useState} from "react"
 
+// components
 import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
 import {View} from "@strongr/components/View/View"
-
-import {measurementsScreenStyles as styles} from "./styles"
-
 import {Icon} from "@strongr/components/Icons/Icons"
+import {BackButton} from "@strongr/components/BackButton/BackButton"
+import {TextInput} from "@strongr/components/TextInput/TextInput"
+
+// contants
 import {COLORS} from "@strongr/constants/colors"
 
-interface Item {
-  key: string
-  label: string
-  value: string
-  unit?: "kg" | "cm" | "%" | "kcal"
-}
+// styles
+import {measurementsScreenStyles as styles} from "./styles"
 
+// types
+import type {Measurement} from "@strongr/types"
+
+// utils
+import {useAppState} from "@strongr/store/store"
+
+// TODO: categorize measurements
 export const MeasurementsScreen = () => {
-  const options: Record<string, Item[]> = {
-    Core: [
-      {
-        key: "weight",
-        label: "Weight",
-        value: "100",
-        unit: "kg"
-      },
-      {
-        key: "body_fat",
-        label: "Body Fat",
-        value: "100",
-        unit: "%"
-      },
-      {
-        key: "caloric_intake",
-        label: "Caloric Intake",
-        value: "100",
-        unit: "kcal"
-      }
-    ],
-    "Body Part": [
-      {
-        key: "neck",
-        label: "Neck",
-        value: "100"
-      },
-      {
-        key: "chest",
-        label: "Chest",
-        value: "100"
-      },
-      {
-        key: "shoulders",
-        label: "Shoulders",
-        value: "100"
-      },
-      {
-        key: "left_bicep",
-        label: "Left Bicep",
-        value: "100"
-      },
-      {
-        key: "right_bicep",
-        label: "Right Bicep",
-        value: "100"
-      },
-      {
-        key: "left_forearm",
-        label: "Left Forearm",
-        value: "100"
-      },
-      {
-        key: "right_forearm",
-        label: "Right Forearm",
-        value: "100"
-      },
-      {
-        key: "waist",
-        label: "Waist",
-        value: "100"
-      },
-      {
-        key: "hips",
-        label: "Hips",
-        value: "100"
-      },
-      {
-        key: "left_thigh",
-        label: "Left Thigh",
-        value: "100"
-      },
-      {
-        key: "right_thigh",
-        label: "Right Thigh",
-        value: "100"
-      },
-      {
-        key: "left_calf",
-        label: "Left Calf",
-        value: "100"
-      },
-      {
-        key: "right_calf",
-        label: "Right Calf",
-        value: "100"
-      }
-    ]
+  const [activeItem, setActiveItem] = useState<Measurement>()
+
+  const activeItemValue = useRef<number>()
+
+  const {appState, updateAppState} = useAppState()
+
+  const onModalClose = () => {
+    activeItemValue.current = undefined
+    setActiveItem(undefined)
+  }
+
+  const onItemPress = (key: string) => {
+    setActiveItem(appState.user.measurements[key])
+  }
+
+  const onModalInputChange = (value: string) => {
+    activeItemValue.current = Number(value)
+  }
+
+  const onModalSave = () => {
+    const newItem = {...activeItem, value: Number(activeItemValue.current)}
+
+    if (newItem.key) {
+      updateAppState({
+        user: {
+          measurements: {
+            ...appState.user.measurements,
+            [newItem.key]: newItem
+          }
+        }
+      })
+    }
+
+    onModalClose()
   }
 
   return (
@@ -113,25 +65,62 @@ export const MeasurementsScreen = () => {
           right: -10
         }}
       >
-        {Object.entries(options).map(([key, values]) => {
+        <Modal
+          animationType="fade"
+          presentationStyle="pageSheet"
+          visible={!!activeItem}
+          onDismiss={onModalClose}
+          onRequestClose={onModalClose}
+        >
+          <View style={styles.modalContent}>
+            <BackButton
+              arrowDirection="left"
+              height={35}
+              width={35}
+              onPress={onModalClose}
+            />
+
+            <TouchableOpacity
+              style={styles.modalSaveButton}
+              onPress={onModalSave}
+            >
+              <Text style={styles.modalSaveButtonText}>Save</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.modalInputLabel}>
+              {activeItem?.label} ({activeItem?.unit})
+            </Text>
+            <TextInput
+              defaultValue={String(activeItem?.value ?? "")}
+              iconName="Settings"
+              keyboardType="number-pad"
+              style={styles.modalInput}
+              onChangeText={onModalInputChange}
+            />
+          </View>
+        </Modal>
+
+        {Object.entries(appState.user.measurements).map(([key, val]) => {
+          const {label, unit, value} = val
+
           return (
-            <View key={key} style={styles.groupWrapper}>
-              <Text style={styles.groupTitle}>{key}</Text>
-              {values.map(({label, value, unit = "cm"}) => {
-                return (
-                  <View key={label} style={styles.item}>
-                    <Text style={styles.itemLabel}>{label}</Text>
-                    <View style={styles.itemControls}>
-                      <Text style={styles.itemValue}>
-                        {value} {unit}
-                      </Text>
-                      <TouchableOpacity style={styles.itemControlsButton}>
-                        <Icon fill={COLORS.WHITE} name="Plus" />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                )
-              })}
+            <View key={key} style={styles.item}>
+              <Text style={styles.itemLabel}>{label}</Text>
+              <View style={styles.itemControls}>
+                {value ? (
+                  <Text style={styles.itemValue}>
+                    {value} {unit}
+                  </Text>
+                ) : null}
+                <TouchableOpacity
+                  style={styles.itemControlsButton}
+                  onPress={() => {
+                    onItemPress(key)
+                  }}
+                >
+                  <Icon fill={COLORS.WHITE} name="Plus" />
+                </TouchableOpacity>
+              </View>
             </View>
           )
         })}

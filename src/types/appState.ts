@@ -1,3 +1,12 @@
+export type MeasurementUnit = "cm" | "kg" | "kcal" | "%" // TODO: support imperial units
+
+export interface Measurement {
+  key: string
+  label: string
+  unit: MeasurementUnit
+  value?: number
+}
+
 export interface AppState {
   hasAuth: boolean
   lastOnboardingStep: number
@@ -9,6 +18,7 @@ export interface AppState {
     gender?: string
     goal?: string
     height?: number
+    measurements: Record<string, Measurement>
     name: string
     settings: {
       enableProgramNotifications: boolean

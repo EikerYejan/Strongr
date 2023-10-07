@@ -1,4 +1,5 @@
 import {COLORS} from "@strongr/constants/colors"
+import {FONTS} from "@strongr/constants/fonts"
 import {themedColor} from "@strongr/utils/theme"
 import {StyleSheet} from "react-native"
 
@@ -7,7 +8,8 @@ export const measurementsScreenStyles = StyleSheet.create({
     color: themedColor(COLORS.WHITE, COLORS.BLACK),
     fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 10
+    marginBottom: 10,
+    fontFamily: FONTS.INTER_BOLD
   },
   groupWrapper: {
     marginBottom: 20
@@ -25,17 +27,43 @@ export const measurementsScreenStyles = StyleSheet.create({
     backgroundColor: COLORS.PRIMARY,
     borderRadius: 4,
     marginLeft: 15,
-    opacity: 0.8,
     padding: 2
   },
   itemLabel: {
     color: themedColor(COLORS.SOFT, COLORS.SECONDARY),
     fontSize: 16,
-    fontWeight: "700"
+    fontFamily: FONTS.INTER_REGULAR
   },
   itemValue: {
     color: themedColor(COLORS.WHITE, COLORS.SOFT),
     fontSize: 16,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily: FONTS.INTER_BOLD
+  },
+  modalContent: {
+    backgroundColor: themedColor(COLORS.WHITE, COLORS.SOFT),
+    padding: 20,
+    height: "100%"
+  },
+  modalInput: {
+    marginTop: 5
+  },
+  modalInputLabel: {
+    color: themedColor(COLORS.BLACK, COLORS.SECONDARY),
+    fontSize: 16,
+    fontWeight: "700",
+    fontFamily: FONTS.INTER_BOLD,
+    marginTop: 30
+  },
+  modalSaveButton: {
+    position: "absolute",
+    right: 20,
+    top: 20
+  },
+  modalSaveButtonText: {
+    color: COLORS.PRIMARY,
+    fontSize: 18,
+    fontWeight: "bold",
+    fontFamily: FONTS.INTER_BOLD
   }
 })
