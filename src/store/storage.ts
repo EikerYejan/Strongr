@@ -106,6 +106,17 @@ class StorageService {
     if (!Object.keys(storedData).length) {
       this.updateAppStorage(defaultAppState)
     }
+
+    //! Update legacy users data here
+    if (!storedData.user.measurements) {
+      this.updateAppStorage({
+        ...storedData,
+        user: {
+          ...storedData.user,
+          measurements: defaultAppState.user.measurements
+        }
+      })
+    }
   }
 
   public updateAppStorage(value: AppState) {
