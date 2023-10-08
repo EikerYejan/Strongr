@@ -1,4 +1,4 @@
-export type MeasurementUnit = "cm" | "kg" | "kcal" | "%" // TODO: support imperial units
+export type MeasurementUnit = "cm" | "kg" | "kcal" | "%" | "in" | "lb"
 
 export interface Measurement {
   key: string

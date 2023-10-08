@@ -19,6 +19,7 @@ import type {Measurement} from "@strongr/types"
 
 // utils
 import {useAppState} from "@strongr/store/store"
+import {useFormat} from "@strongr/hooks/useFormat"
 
 export const MeasurementsScreen = () => {
   const [activeItem, setActiveItem] = useState<Measurement>()
@@ -26,6 +27,7 @@ export const MeasurementsScreen = () => {
   const activeItemValue = useRef<number>()
 
   const {appState, updateAppState} = useAppState()
+  const {formatMetricUnit, formatMetricUnitValue} = useFormat()
 
   const onModalClose = () => {
     activeItemValue.current = undefined
@@ -72,8 +74,6 @@ export const MeasurementsScreen = () => {
       {Core: [], "Body Part": []}
     )
 
-    console.log(grouped)
-
     return grouped
   }, [appState.user.measurements])
 
@@ -91,32 +91,34 @@ export const MeasurementsScreen = () => {
           onDismiss={onModalClose}
           onRequestClose={onModalClose}
         >
-          <View style={styles.modalContent}>
-            <BackButton
-              arrowDirection="left"
-              height={35}
-              width={35}
-              onPress={onModalClose}
-            />
+          {activeItem ? (
+            <View style={styles.modalContent}>
+              <BackButton
+                arrowDirection="left"
+                height={35}
+                width={35}
+                onPress={onModalClose}
+              />
 
-            <TouchableOpacity
-              style={styles.modalSaveButton}
-              onPress={onModalSave}
-            >
-              <Text style={styles.modalSaveButtonText}>Save</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalSaveButton}
+                onPress={onModalSave}
+              >
+                <Text style={styles.modalSaveButtonText}>Save</Text>
+              </TouchableOpacity>
 
-            <Text style={styles.modalInputLabel}>
-              {activeItem?.label} ({activeItem?.unit})
-            </Text>
-            <TextInput
-              defaultValue={String(activeItem?.value ?? "")}
-              iconName="Settings"
-              keyboardType="number-pad"
-              style={styles.modalInput}
-              onChangeText={onModalInputChange}
-            />
-          </View>
+              <Text style={styles.modalInputLabel}>
+                {activeItem.label} ({formatMetricUnit(activeItem.unit)})
+              </Text>
+              <TextInput
+                defaultValue={String(activeItem.value ?? "")}
+                iconName="Settings"
+                keyboardType="number-pad"
+                style={styles.modalInput}
+                onChangeText={onModalInputChange}
+              />
+            </View>
+          ) : null}
         </Modal>
 
         {Object.keys(options).map((key) => {
@@ -131,7 +133,7 @@ export const MeasurementsScreen = () => {
                   <View style={styles.itemControls}>
                     {value ? (
                       <Text style={styles.itemValue}>
-                        {value} {unit}
+                        {formatMetricUnitValue(value, unit)}
                       </Text>
                     ) : null}
                     <TouchableOpacity

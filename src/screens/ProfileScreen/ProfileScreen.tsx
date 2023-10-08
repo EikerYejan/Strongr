@@ -1,5 +1,6 @@
 import {Alert} from "react-native"
 import RNRestart from "react-native-restart"
+import Clipboard from "@react-native-community/clipboard"
 
 // components
 import {MenuOption} from "@strongr/components/MenuOption/MenuOption"
@@ -45,6 +46,14 @@ export const ProfileScreen = ({navigation}: Props) => {
     ])
   }
 
+  const onCopyAppStoragePress = () => {
+    const storage = Storage.getAppStorage()
+
+    Clipboard.setString(JSON.stringify(storage, null, 2))
+
+    Alert.alert("App storage copied to clipboard")
+  }
+
   const menuOptions: MenuOptionProps[] = [
     {
       label: "Edit Profile",
@@ -77,6 +86,15 @@ export const ProfileScreen = ({navigation}: Props) => {
         fontSize: 17
       },
       onPress: onResetAppStoragePress,
+      showIcon: false
+    },
+    {
+      label: "Copy App Storage",
+      labelStyles: {
+        color: COLORS.PRIMARY,
+        fontSize: 17
+      },
+      onPress: onCopyAppStoragePress,
       showIcon: false
     },
     {
