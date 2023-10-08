@@ -5,7 +5,7 @@ import merge from "ts-deepmerge"
 // types
 import type {AppState} from "@strongr/types"
 
-const STORAGE_VERSION = "1.3"
+const STORAGE_VERSION = "1.4"
 
 export const defaultAppState: AppState = {
   __version: STORAGE_VERSION,
@@ -21,6 +21,11 @@ export const defaultAppState: AppState = {
       measureUnit: "metric"
     },
     measurements: {
+      weight: {
+        key: "weight",
+        label: "Weight",
+        unit: "kg"
+      },
       body_fat: {
         key: "body_fat",
         label: "Body Fat",
