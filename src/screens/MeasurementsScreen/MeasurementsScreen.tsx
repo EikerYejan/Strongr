@@ -1,5 +1,5 @@
 import {Modal, ScrollView, Text, TouchableOpacity} from "react-native"
-import {useRef, useState} from "react"
+import {useMemo, useRef, useState} from "react"
 
 // components
 import {ScreenWrapper} from "@strongr/components/ScreenWrapper/ScreenWrapper"
@@ -20,7 +20,6 @@ import type {Measurement} from "@strongr/types"
 // utils
 import {useAppState} from "@strongr/store/store"
 
-// TODO: categorize measurements
 export const MeasurementsScreen = () => {
   const [activeItem, setActiveItem] = useState<Measurement>()
 
@@ -57,6 +56,26 @@ export const MeasurementsScreen = () => {
 
     onModalClose()
   }
+
+  const options = useMemo(() => {
+    const grouped = Object.entries(appState.user.measurements || {}).reduce<
+      Record<"Core" | "Body Part", Measurement[]>
+    >(
+      (acc, [key, val]) => {
+        if (["body_fat", "caloric_intake"].includes(key)) {
+          return {...acc, Core: [...acc.Core, val]}
+        }
+
+        return {...acc, "Body Part": [...acc["Body Part"], val]}
+      },
+
+      {Core: [], "Body Part": []}
+    )
+
+    console.log(grouped)
+
+    return grouped
+  }, [appState.user.measurements])
 
   return (
     <ScreenWrapper>
@@ -100,27 +119,32 @@ export const MeasurementsScreen = () => {
           </View>
         </Modal>
 
-        {Object.entries(appState.user.measurements || {}).map(([key, val]) => {
-          const {label, unit, value} = val
+        {Object.keys(options).map((key) => {
+          const items = options[key as keyof typeof options]
 
           return (
-            <View key={key} style={styles.item}>
-              <Text style={styles.itemLabel}>{label}</Text>
-              <View style={styles.itemControls}>
-                {value ? (
-                  <Text style={styles.itemValue}>
-                    {value} {unit}
-                  </Text>
-                ) : null}
-                <TouchableOpacity
-                  style={styles.itemControlsButton}
-                  onPress={() => {
-                    onItemPress(key)
-                  }}
-                >
-                  <Icon fill={COLORS.WHITE} name="Plus" />
-                </TouchableOpacity>
-              </View>
+            <View key={key} style={styles.groupWrapper}>
+              <Text style={styles.groupTitle}>{key}</Text>
+              {items.map(({key: k, label, unit, value}) => (
+                <View key={k} style={styles.item}>
+                  <Text style={styles.itemLabel}>{label}</Text>
+                  <View style={styles.itemControls}>
+                    {value ? (
+                      <Text style={styles.itemValue}>
+                        {value} {unit}
+                      </Text>
+                    ) : null}
+                    <TouchableOpacity
+                      style={styles.itemControlsButton}
+                      onPress={() => {
+                        onItemPress(k)
+                      }}
+                    >
+                      <Icon fill={COLORS.WHITE} name="Plus" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))}
             </View>
           )
         })}
