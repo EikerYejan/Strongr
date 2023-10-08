@@ -27,7 +27,8 @@ export const MeasurementsScreen = () => {
   const activeItemValue = useRef<number>()
 
   const {appState, updateAppState} = useAppState()
-  const {formatMetricUnit, formatMetricUnitValue} = useFormat()
+  const {calculatUnitValue, formatMetricUnit, formatMetricUnitString} =
+    useFormat()
 
   const onModalClose = () => {
     activeItemValue.current = undefined
@@ -43,7 +44,16 @@ export const MeasurementsScreen = () => {
   }
 
   const onModalSave = () => {
-    const newItem = {...activeItem, value: Number(activeItemValue.current)}
+    const newItem = {
+      ...activeItem,
+      value: activeItem
+        ? calculatUnitValue(
+            activeItemValue.current ?? activeItem.value ?? 0,
+            activeItem?.unit,
+            true
+          )
+        : 0
+    }
 
     if (newItem.key) {
       updateAppState({
@@ -64,7 +74,7 @@ export const MeasurementsScreen = () => {
       Record<"Core" | "Body Part", Measurement[]>
     >(
       (acc, [key, val]) => {
-        if (["body_fat", "caloric_intake"].includes(key)) {
+        if (["weight", "body_fat", "caloric_intake"].includes(key)) {
           return {...acc, Core: [...acc.Core, val]}
         }
 
@@ -111,7 +121,10 @@ export const MeasurementsScreen = () => {
                 {activeItem.label} ({formatMetricUnit(activeItem.unit)})
               </Text>
               <TextInput
-                defaultValue={String(activeItem.value ?? "")}
+                defaultValue={calculatUnitValue(
+                  activeItem.value ?? 0,
+                  activeItem.unit
+                )?.toString()}
                 iconName="Settings"
                 keyboardType="number-pad"
                 style={styles.modalInput}
@@ -133,7 +146,7 @@ export const MeasurementsScreen = () => {
                   <View style={styles.itemControls}>
                     {value ? (
                       <Text style={styles.itemValue}>
-                        {formatMetricUnitValue(value, unit)}
+                        {formatMetricUnitString(value, unit)}
                       </Text>
                     ) : null}
                     <TouchableOpacity
