@@ -1,9 +1,14 @@
 import {MMKV} from "react-native-mmkv"
+import * as Sentry from "@sentry/react-native"
+import merge from "ts-deepmerge"
 
 // types
 import type {AppState} from "@strongr/types"
 
+const STORAGE_VERSION = "1.3"
+
 export const defaultAppState: AppState = {
+  __version: STORAGE_VERSION,
   hasAuth: false,
   lastOnboardingStep: 1,
   onboardingCompleted: false,
@@ -102,20 +107,36 @@ class StorageService {
 
   public init() {
     const storedData = this.getAppStorage()
+    const storedDataVersion = storedData?.__version
 
     if (!Object.keys(storedData).length) {
       this.updateAppStorage(defaultAppState)
+
+      return
     }
 
-    //! Update legacy users data here
-    if (!storedData.user.measurements) {
-      this.updateAppStorage({
-        ...storedData,
-        user: {
-          ...storedData.user,
-          measurements: defaultAppState.user.measurements
+    if (storedDataVersion !== STORAGE_VERSION) {
+      console.log("Storage version mismatch")
+
+      // New data missing on this user, merge with defaults
+      const mergedData = merge(defaultAppState, storedData)
+
+      mergedData.__version = STORAGE_VERSION
+
+      Sentry.captureMessage(
+        `Storage version mismatch ${storedDataVersion} !== ${STORAGE_VERSION}`,
+        {
+          level: "log",
+          extra: {
+            currentUserStorage: storedData,
+            currentStorageVersion: storedDataVersion,
+            mergedData,
+            STORAGE_VERSION
+          }
         }
-      })
+      )
+
+      this.updateAppStorage(mergedData)
     }
   }
 

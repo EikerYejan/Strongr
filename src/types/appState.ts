@@ -8,6 +8,7 @@ export interface Measurement {
 }
 
 export interface AppState {
+  __version: string
   hasAuth: boolean
   lastOnboardingStep: number
   onboardingCompleted: boolean

@@ -5,9 +5,11 @@ import {SafeAreaView, StatusBar} from "react-native"
 import {QueryClient, QueryClientProvider} from "react-query"
 import {RecoilRoot} from "recoil"
 import * as Sentry from "@sentry/react-native"
+import DeviceInfo from "react-native-device-info"
 
 // constants
 import {COLORS} from "./src/constants/colors"
+import {version} from "./package.json"
 
 // navigation
 import {RootNavigator} from "./src/navigators/RootNavigator"
@@ -26,7 +28,14 @@ Sentry.init({
   dsn: "https://83247282af94d8e7e1bdc67f8c06c494@o983732.ingest.sentry.io/4506011394572288",
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
   // We recommend adjusting this value in production.
-  tracesSampleRate: 1.0
+  tracesSampleRate: 1.0,
+  normalizeDepth: 0,
+  initialScope: {
+    tags: {
+      build: DeviceInfo.getBuildNumber(),
+      version
+    }
+  }
 })
 
 const safeAreaViewStyles: ViewStyle = {

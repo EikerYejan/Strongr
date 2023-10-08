@@ -41,7 +41,7 @@ export const measurementsScreenStyles = StyleSheet.create({
     fontFamily: FONTS.INTER_BOLD
   },
   modalContent: {
-    backgroundColor: themedColor(COLORS.WHITE, COLORS.SOFT),
+    backgroundColor: themedColor(COLORS.DARK_3, COLORS.WHITE),
     padding: 20,
     height: "100%"
   },
@@ -49,7 +49,7 @@ export const measurementsScreenStyles = StyleSheet.create({
     marginTop: 5
   },
   modalInputLabel: {
-    color: themedColor(COLORS.BLACK, COLORS.SECONDARY),
+    color: themedColor(COLORS.WHITE, COLORS.BLACK),
     fontSize: 16,
     fontWeight: "700",
     fontFamily: FONTS.INTER_BOLD,
