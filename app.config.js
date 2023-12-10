@@ -3,7 +3,7 @@ const {generate} = require("build-number-generator")
 const {version} = require("./package.json")
 
 const BUNDLE_IDENTIFIER =
-  process.env.BUNDLE_IDENTIFIER || "com.eikeryejan.strongr"
+  process.env.BUNDLE_IDENTIFIER ?? "com.eikeryejan.strongr"
 
 const buildNumber = generate()
 

@@ -4,12 +4,9 @@ import "react-native-gesture-handler"
 import {SafeAreaView, StatusBar} from "react-native"
 import {QueryClient, QueryClientProvider} from "react-query"
 import {RecoilRoot} from "recoil"
-import * as Sentry from "@sentry/react-native"
-import DeviceInfo from "react-native-device-info"
 
 // constants
 import {COLORS} from "./src/constants/colors"
-import {version} from "./package.json"
 
 // navigation
 import {RootNavigator} from "./src/navigators/RootNavigator"
@@ -24,20 +21,6 @@ import type {ViewStyle} from "react-native"
 // utils
 import {getColorScheme, themedColor} from "@strongr/utils/theme"
 
-Sentry.init({
-  dsn: "https://83247282af94d8e7e1bdc67f8c06c494@o983732.ingest.sentry.io/4506011394572288",
-  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-  // We recommend adjusting this value in production.
-  tracesSampleRate: 1.0,
-  normalizeDepth: 0,
-  initialScope: {
-    tags: {
-      build: DeviceInfo.getBuildNumber(),
-      version
-    }
-  }
-})
-
 const safeAreaViewStyles: ViewStyle = {
   backgroundColor: themedColor(COLORS.DARK_1, COLORS.WHITE),
   height: "100%"
@@ -45,7 +28,7 @@ const safeAreaViewStyles: ViewStyle = {
 
 const queryClient = new QueryClient()
 
-export default Sentry.wrap(() => {
+export default function App() {
   const appearance = getColorScheme()
 
   return (
@@ -76,4 +59,4 @@ export default Sentry.wrap(() => {
       </SafeAreaView>
     </NavigationContainer>
   )
-})
+}
